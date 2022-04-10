@@ -1,36 +1,35 @@
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number}
+ * 左右孩子都为空的节点才是叶子节点，递归计算的时候需要注意这个点
+ #
+ */
 var minDepth = function(root) {
     // 节点为空直接返回0
-    // if (!root) {
-    //     return 0;
-    // }
-    // // 节点的左右子树都为0，说明这是一个叶子节点，直接返回1
-    // if (!root.left && !root.right) {
-    //     return 1;
-    // }
-    // let min_depth = Infinity;
-    // // 计算左侧子树深度
-    // if (root.left) {
-    //     min_depth = Math.min(minDepth(root.left), min_depth);
-    // }
-    // // 计算右侧子树深度
-    // if (root.right) {
-    //     min_depth = Math.min(minDepth(root.right), min_depth);
-    // }
-    // // 最终返回左右子树中最小的层数
-    // return min_depth + 1;
+    // 递归
+    if (!root) {
+        return 0;
+    }
+    let leftDepth = minDepth(root.left); // 左节点深度
+    let rightDepth = minDepth(root.right); // 右节点深度
 
-    // if (!root) return 0;
-    // // 到达叶子节点，返回1
-    // if (!root.left && !root.right) return 1;
-    // // 只有右节点时，递归右节点
-    // if (!root.left) {
-    //     return 1 + minDepth(root.right);
-    // }
-    // // 只有左节点的时候，递归右节点
-    // if (!root.right) {
-    //     return 1 + minDepth(root.left);
-    // }
-    // return Math.min(minDepth(root.left), minDepth(root.right)) + 1;
+    // 当一个左子树为空，，右子树不为空，这时并不是最低点
+    if (!root.left && root.right) {
+        return 1 + rightDepth;
+    }
+    // 当一个右子树为空，，右子树不为空，这时并不是最低点
+    if (root.left && !root.right) {
+        return 1 + leftDepth;
+    }
+    return 1 + Math.min(leftDepth, rightDepth)
 
     // 迭代法
     // if (!root) return 0;

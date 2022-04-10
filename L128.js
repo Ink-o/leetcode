@@ -1,8 +1,10 @@
 var longestConsecutive = function(nums) {
     let set = new Set(nums);
+    // 数字去重
     let arr = [...set]
     let ans = 0;
     for (let i = 0; i < arr.length; i++) {
+        // 注意这里需要取准确值，目标值为arr
         let cur = arr[i];
         // 只有当num - 1不存在时，才开始向后遍历num+1,num+2,num+3
         if (!set.has(cur - 1)) {

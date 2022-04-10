@@ -13,6 +13,9 @@ var generateMatrix = function(n) {
     while(loop--) {
         let row = startX, col = startY;
         // 上行从左到右（左闭右开）
+        // offset决定了边界值
+        // offset: 0  startY（0） + n - offset（1）   n - 1
+        // offset: 1  startY（1） + n - offset（3）   n - 2
         for (; col < startY + n - offset; col++) {
             res[row][col] = count++;
         }

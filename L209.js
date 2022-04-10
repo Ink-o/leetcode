@@ -1,16 +1,20 @@
 var minSubArrayLen = function(target, nums) {
-    let len = nums.length;
-    let l = r = sum = 0;
-    let res = len + 1; // 子数组不会超过自身
-    while(r < len) {
-        // 右指针滑动
-        sum += nums[r++];
-        // 窗口滑动直到值大于target
-        while (sum >= target) {
-            // r 始终为开区间 [l, r)
-            res = res < r - 1 ? res : r - 1;
-            sum -= nums[l++];
+    // 数值定义为len+1
+    let minCount = nums.length + 1;
+    let curSum = 0;
+    let left = 0;
+    // 循环
+    for (let i = 0; i < nums.length; i++) {
+        // 当前数值++
+        curSum += nums[i];
+        // 边界值：大于或等于target
+        while (curSum >= target) {
+            // 最小的更新需要在curSum之前进行
+            // 更新最小值
+            minCount = Math.min(minCount, i - left + 1);
+            // 更新curSum
+            curSum -= nums[left++];
         }
     }
-    return res > len ? 0 : res;
+    return minCount === nums.length + 1 ? 0 : minCount;
 }
