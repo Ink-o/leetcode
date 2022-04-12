@@ -19,7 +19,7 @@ var levelOrder = function(root) {
     }
     ret.push([root.val]);
     while (queue.length) {
-        // 记录当前层级节点数
+        // 记录当前层级节点数（for循环的时候不可以直接用queue.length进行循环，因为queue.length是动态变化的）
         let length = queue.length;
         // 存放每一层的节点
         let curLevel = [];

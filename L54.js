@@ -36,7 +36,7 @@ var spiralOrder = function(matrix) {
 
         // 从右往左，j为变化列
         // (xLength - 1) - (i + 1)，n - 1 - i是最后一列。这里的i + 1是为了去除最右下角的那个数(上层已经走过了)
-        // yLength - 1 - i !== i 用来保证遍历的这一行没有重复
+        // yLength - 1 - i !== i 用来保证遍历的这一行没有重复，因为此时正在遍历的是最后一行
         // 左闭右闭，到达第一列
         for (let j = xLength - 1 - i - 1; j >= i && (yLength - 1 - i !== i); j--) {
             // yLength - 1 - i：最后一行
