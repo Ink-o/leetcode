@@ -30,6 +30,11 @@
 // };
 
 // 贪心卖法
+// 问题分解：
+// 假如第0天买入，第3天卖出，那么利润为：prices[3] - prices[0]。
+// 相当于(prices[3] - prices[2]) + (prices[2] - prices[1]) + (prices[1] - prices[0])。
+
+// 这里的贪心只取正数来进行累加
 var maxProfit = function(prices) {
     let profit = 0;
     for (let i = 1; i < prices.length; i++) {
