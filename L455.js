@@ -5,7 +5,6 @@
  */
 var findContentChildren = function(g, s) {
     let result = 0;
-    // let eatMap = new Map();
     s = s.sort((a,b) => a - b);
     g = g.sort((a,b) => a - b);
     for (let i = 0; i < s.length; i++) {

@@ -9,7 +9,7 @@
 /**
  * @param {TreeNode} root
  * @return {number}
- * 思路，直接
+ * 思路，直接层序遍历，每次都获取最左边的节点，等待结束后，返回之前保存的最左边的节点
  */
 var findBottomLeftValue = function(root) {
     let queue = [root];
@@ -30,3 +30,31 @@ var findBottomLeftValue = function(root) {
     }
     return firstNodeVal;
 };
+
+/**
+ * @param {TreeNode} root
+ * @return {number}
+ * 思路，先序遍历
+ */
+var findBottomLeftValue = function(root) {
+    // 首先考虑递归遍历 前序遍历 找到最大深度的叶子节点即可
+    let maxPath = 0, resNode = null;
+    // 1、确定递归函数的函数参数
+    const dfsTree = function(node, curPath) {
+        // 确定递归函数终止条件
+        // 中
+        // 这里一定是左节点优先更新最大层数，当左节点更新后，就不会再进行最左边的节点更新
+        if (!node.left && !node.right) {
+            if (curPath > maxPath) {
+                maxPath = curPath;
+                resNode = node.val;
+            }
+        }
+        // 左
+        node.left && dfsTree(node.left, curPath + 1);
+        // 右
+        node.right && dfsTree(node.right, curPath + 1);
+    }
+    dfsTree(root, 1);
+    return resNode;
+}
