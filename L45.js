@@ -3,21 +3,18 @@
  * @return {number}
  */
 var jump = function(nums) {
-    if (nums.length === 1) return 0;
-    let curDistance = 0; // 当前覆盖最远距离下标
-    let ans = 0; // 需要走的步数
-    let nextDistance = 0; // 下一步覆盖最远距离下标
-    for (let i = 0; i < nums.length; i++) {
-        nextDistance = Math.max(nums[i] + i, nextDistance); // 更新下一步覆盖最远距离下标
-        if (i == curDistance) {
-            if (curDistance != nums.length - 1) {
-                ans++;
-                curDistance = nextDistance;
-                if (nextDistance >= nums.length - 1) break;
-            } else {
-                break;
-            }
+    let curIndex = 0;
+    let nextIndex = 0;
+    // 终点是百分百可以到达的，所以索引不需要到达最后一个
+    for (let i = 0; i < nums.length - 1; i++) {
+        // 更新下一步的最大覆盖范围
+        nextIndex = Math.max(nextIndex, i + nums[i]);
+        // 只需要关注当前i是否到达了当前最大覆盖范围然后更新最大覆盖即可，如果i 可以到达 nums.length - 1 位置
+        // 那么这里会进行重复计算
+        if (i === curIndex) {
+            step++;
+            curIndex = nextIndex;
         }
     }
-    return ans;
+    return step;
 };

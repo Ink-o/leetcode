@@ -1,37 +1,35 @@
 /**
  * @param {number[]} nums
  * @return {number}
+ * 贪心
  */
 var wiggleMaxLength = function(nums) {
-    let result1 = 1; // 以正数开头的结果
-    let result2 = 1; // 以负数开头的结果
-    let i,j;
-    let odd1 = true;
-    let odd2 = true;
-    for (i = 0,j = i + 1; j < nums.length; i++,j++) {
-        let start = nums[i];
-        let end = nums[j];
-        if (
-            (odd1 && end - start > 0) ||
-            (!odd1 && end - start < 0)
-        ) {
-            result1++;
-            odd1 = !odd1;
-        }
-        if (
-            (odd2 && end - start < 0) ||
-            (!odd2 && end - start > 0)
-        ) {
-            result2++;
-            odd2 = !odd2;
-            continue;
+    if (nums.length <= 1) {
+        return nums.length;
+    }
+    let result = 1; // 默认值为1，当长度大于等于1的时候，最小值至少为1
+    let preDiff = 0; // 上个差值
+    let curDiff = 0; // 现在的差值
+
+    for (let i = 0; i < nums.length; i++) {
+        // 计算实时的diff
+        curDiff = nums[i + 1] - nums[i];
+        // 当满足curDiff和preDiff任一个大于0和小于0的时候，结果值+1
+        if ((curDiff > 0 && preDiff <= 0) || (curDiff < 0 && preDiff >= 0)) {
+            result++;
+            // 更新preDiff
+            preDiff = curDiff;
         }
     }
-    console.log(result1);
-    console.log(result2);
-    return result1 >= result2 ? result1 : result2;
+    return result;
 };
-// console.log(wiggleMaxLength([0,0]));
-console.log(wiggleMaxLength([3,3,3,2,5]));
-// console.log(wiggleMaxLength([1,7,4,9,2,5]));
-// console.log(wiggleMaxLength([1,17,5,10,13,15,10,5,16,8]));
+
+
+/**
+ * @param {number[]} nums
+ * @return {number}
+ * dp
+ */
+var wiggleMaxLength = function(nums) {
+    
+}
