@@ -1,9 +1,10 @@
 /**
  * @param {number[]} bills
  * @return {boolean}
+ * 贪心，收到5块无需处理，收到10块需要找5块，
+ * 收到20块，方案1：找10+5，方案2：找3张5块。方案1优于方案2，因为5块的作用比较大
  */
 var lemonadeChange = function(bills) {
-    if (bills[0] > 5) return false;
     let fiveRest = 0;
     let tenRest = 0;
     for (let i = 0; i < bills.length; i++) {
