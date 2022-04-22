@@ -17,8 +17,8 @@ var buildTree = function(inorder, postorder) {
     let rootIndex = inorder.indexOf(rootVal); // 获取中间节点在中序遍历中的下标
     const root = new TreeNode(rootVal); // 创建节点
     // 这里需要保持中序遍历和后序遍历的数组长度一致（中序获取根节点前的数组，不包括根节点。后序遍历取）
-    root.left = buildTree(inorder.slice(0, rootIndex), postorder(0, rootIndex));
+    root.left = buildTree(inorder.slice(0, rootIndex), postorder.slice(0, rootIndex));
     // 这里需要保持中序遍历和后序遍历的数组长度一致（中序获取根节点后的数组，不包括根节点。因为后序遍历已经把根节点弹出来了，所以直接取rootIndex后的就可以了，长度依然是和中序遍历取rootIndex + 1的长度是一样的）
-    root.right = buildTree(inorder.slice(rootIndex + 1), postorder(rootIndex));
+    root.right = buildTree(inorder.slice(rootIndex + 1), postorder.slice(rootIndex));
     return root;
 };

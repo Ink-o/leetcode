@@ -17,13 +17,13 @@ var inorderTraversal = function(root) {
     let cur = root;
     let res = [];
     while (stack.length || cur) {
-        // 先把所有的左节点全部进栈
+        // 先把所有的左节点全部进栈(第一次进入循环体是先把根节点放进去)
         if (cur) {
             stack.push(cur);
             // 左
             cur = cur.left;
         } else {
-            // 再逐渐进行出栈，cur赋值为当前出栈的节点
+            // 首先是最底层的左节点优先出栈，cur赋值为当前出栈的节点
             cur = stack.pop();
             res.push(cur.val);
             // 出完栈后再对右节点进行处理

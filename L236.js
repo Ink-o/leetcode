@@ -24,7 +24,7 @@ var lowestCommonAncestor = function(root, p, q) {
         let right = travelTree(root.right, p, q);
 
         // 如果p、q分别在左右子树上，那么直接返回他的父节点
-        if (!left && !right) {
+        if (left && right) {
             return root;
         }
         // 如果左子树寻找不到p或者q，那么直接返回右子树寻找到的第一个匹配节点，此时p(q)一定是q(p)的最近公共祖先
