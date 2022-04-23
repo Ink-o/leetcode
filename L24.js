@@ -15,7 +15,7 @@ let swapPairs = function (head) {
         // 步骤一（当前节点的next连接到节点2）
         temp.next = cur;
         
-        // 指针移动
+        // 指针移动到下一个未交换节点的前面，因为交换节点的对象是其之后的两个节点
         temp = pre;
     }
     return ret.next;
