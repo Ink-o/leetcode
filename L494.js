@@ -8,30 +8,32 @@
  * left = (sum + target) / 2
  */
 var findTargetSumWays = function(nums, target) {
-    const sum = nums.reduce((a, b) => a + b);
+    let sum = nums.reduce((a,b)=>a+b);
+
+    if (Math.abs(target) > sum) {
+        return 0;
+    }
+    // left值不是个偶数的话，直接返回0
+    if ((sum + target) % 2 !== 0) {
+        return 0;
+    }
+
+    // 获得left值
+    let halfNum = (sum + target) / 2;
     
-    // 如果target无法得到，则直接返回0
-    if (Math.abs(sum) < target) {
-        return 0;
-    }
-
-    // target + sum 不是一个偶数，则直接返回0
-    if ((target + sum) % 2 !== 0) {
-        return 0;
-    }
-
-    // 背包容量
-    const halfSum = (target + sum) / 2;
-
-    // 初始化dp，dp[i]的意思是 i 容量的背包只能放最多能有 dp[i] 种方法来组成 i 这个数值
-    let dp = new Array(halfSum + 1).fill(0);
-    // dp[0]初始化为1，组成0的方法就只有一种，那就是0
+    // 初始化dp数组，dp[i]的意思是背包容量为i时，可以有dp[i]种组合组合成 i 这个值
+    let dp = new Array(halfNum + 1).fill(0);
+    // dp[0]初始化为1，因为后面的数组都是依靠前面的数值来进行计算
     dp[0] = 1;
-
+    
     for (let i = 0; i < nums.length; i++) {
-        for (let j = halfSum; j > nums[i]; j--) {
-            dp[j] += dp[j - nums[i]] + nums[i];
+        for (let j = halfNum; j >= nums[i]; j--) {
+            // 这里的dp[j - nums[i]] 就是上一层旧的dp值，求总和，直接进行累加即可
+            dp[j] += dp[j - nums[i]];
         }
     }
-    return dp[halfSum];
+
+    // 返回最后一个数值
+    return dp[halfNum];
 };
+findTargetSumWays([1,1,1,1,1], 3);
