@@ -9,8 +9,27 @@ var findMaxForm = function(strs, m, n) {
     const dp = new Array(m+1).fill().map(() => new Array(n + 1).fill(0));
     let numOfZeros, numOfOnes;
     
-    for (const iterator of object) {
-        
+    // 遍历物品
+    for (const str of strs) {
+        numOfZeros = 0;
+        numOfOnes = 0;
+
+        // 计算字符串中出现的0和1的个数
+        for (const c of str) {
+            if (c === '0') {
+                numOfZeros++;
+            } else {
+                numOfOnes++;
+            }
+        }
+
+        // 遍历背包
+        for (let i = m; i >= numOfZeros; i--) {
+            for (let j = n; j >= numOfOnes; j--) {
+                dp[i][j] = Math.max(dp[i][j], dp[i - numOfZeros][j - numOfOnes] + 1);
+            }
+        }
     }
+    return dp[m][n];
 };
 findMaxForm( ["10", "0001", "111001", "1", "0"], 5, 3);
