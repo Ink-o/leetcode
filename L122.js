@@ -43,3 +43,23 @@ var maxProfit = function(prices) {
     return profit;
 }
 console.log(maxProfit([7,1,5,3,6,4]));
+
+
+// 动态规划
+var maxProfit = function(prices) {
+    let dp = [];
+    // 第i天持有股票所得现金
+    dp[0] = -prices[0];
+    // 第i天不持有股票所得最多现金
+    dp[1] = 0;
+
+    for (let i = 1; i < prices.length; i++) {
+        // 更新持有股票第i天所得现金，其中有可能进行股票购买，这时候就需要使用 第i天不持有股票 - 股票价格
+        dp[0] = Math.max(dp[0], dp[1] - prices[i]);
+        // 更新未持有股票最大收益，这时候可能进行股票售卖
+        dp[1] = Math.max(dp[1], dp[0] + prices[i]);
+    }
+
+    return dp[1];
+}
+console.log(maxProfit([7,1,5,3,6,4]));

@@ -22,7 +22,7 @@ var maxProfit = function(prices) {
 /**
  * @param {number[]} prices
  * @return {number}
- * 动态规划做法
+ * 动态规划做法，未压缩dp数组
  */
 var maxProfit = function(prices) {
     // dp[i][0]表示第i天持有股票的最大收益（相当于买入的最小值）
@@ -44,4 +44,28 @@ var maxProfit = function(prices) {
     }
 
     return dp[prices.length - 1][1];
+};
+
+/**
+ * @param {number[]} prices
+ * @return {number}
+ * 压缩dp数组
+ */
+ var maxProfit = function(prices) {
+    // dp[0]表示第i天持有股票的最大收益（相当于买入的最小值）
+    // dp[1]表示第i天不持有股票的最大收益（相当于卖出去的最大值）
+    let dp = [];
+
+    // dp[0]初始化为-prices[0]，相当于买入了第一天的股票
+    // dp[1]初始化为0，因为没办法卖出，所以收益为0
+    dp[0] = -prices[0];
+    dp[1] = 0;
+
+    for (let i = 1; i < prices.length; i++) {
+        // 更新第i天不持有股票的最大收益
+        dp[1] = Math.max(dp[1], prices[i] + dp[0]);
+        // 更新第i天持有股票的最大收益
+        dp[0] = Math.max(dp[0], -prices[i]);
+    }
+    return dp[1];
 };
