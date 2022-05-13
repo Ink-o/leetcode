@@ -34,3 +34,33 @@ var maxProfit = function(prices, fee) {
     return result;
 };
 console.log(maxProfit([1, 3, 2, 8, 4, 9], 2));
+
+
+/**
+ * @param {number[]} prices
+ * @param {number} fee
+ * @return {number}
+ * 动态规划思路
+ */
+var maxProfit = function(prices, fee) {
+    let dp = Array.from(new Array(prices.length), () => new Array(2).fill(0));
+
+    // 初始化dp, dp[i][0]表示第i天持有股票所省最多现金。dp[i][1]表示第i天不持有股票所得最多现金
+    dp[0][0] = -prices[0];
+
+    for (let i = 1; i < prices.length; i++) {
+        // 第i天持有股票所省最多现金，可以由2个状态推出来，结果值取2个值的最大值
+        // 第一个，保持原有 dp[i - 1][0]
+        // 第二个，进行买入 dp[i - 1][1] - prices[i]
+        dp[i][0] = Math.max(dp[i - 1][0], dp[i - 1][1] - prices[i]);
+        
+        // 第i天不持有股票所获得最大现金，可以由2个状态推出来
+        // 第一个，保持原有 dp[i - 1][1]
+        // 第二个，进行卖出 dp[i - 1][0] + prices[i] - fee，这里需要扣除手续费
+        dp[i][1] = Math.max(dp[i - 1][1], dp[i - 1][0] + prices[i] - fee);        
+    }
+
+    // 对第i天不持有股票获得的最大现金进行返回
+    return dp[prices.length - 1][1];
+};
+console.log(maxProfit([1, 3, 2, 8, 4, 9], 2));
