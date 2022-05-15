@@ -22,3 +22,29 @@ var maxSubArray = function(nums) {
     return maxSum;
 };
 console.log(maxSubArray([-2, -1]));
+
+/**
+ * @param {number[]} nums
+ * @return {number}
+ * 动态思路实现
+ */
+var maxSubArray = function(nums) {
+    //  dp[i] 表示前n个数值的最大和
+    let dp = new Array(nums.length).fill(0);
+    // dp[0] 初始化为0
+    dp[0] = nums[0];
+    // 结果初始化为0
+    let result = nums[0];
+
+    for (let i = 1; i < nums.length; i++) {
+        // dp[i] 的来源可以是以下两种
+        // dp[i - 1] + nums[i]，即：nums[i]加入当前连续子序列和
+        // nums[i]，即：从头开始计算当前连续子序列和
+        // 结果一定是最大值
+        dp[i] = Math.max(nums[i], dp[i - 1] + nums[i]);
+
+        // 结果值取最大
+        result = Math.max(result, dp[i]);
+    }
+    return result;
+};
