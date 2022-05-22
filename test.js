@@ -1,84 +1,24 @@
-// /**
-//  * @param {string} digits
-//  * @return {string[]}
-//  */
-// let template = [
-//     ['a', 'b', 'c'],
-//     ['d', 'e', 'f'],
-//     ['j', 'k', 'l'],
-//     ['m', 'n', 'o'],
-//     ['p', 'q', 'r', 's'],
-//     ['t', 'u', 'v'],
-//     ['w', 'x', 'y', 'z'],
-// ]
-// let cur = [];
-// let result = [];
-// var letterCombinations = function(digits) {
-//     digits = digits.split('');
-//     progress(digits, template, 0);
-// };
-// function progress(digits, template, nowIndex) {
-//     if (cur.length === digits.length) {
-//         console.log('[ cur ] >', cur)
-//         result.push([...cur].join(''));
-//         return;
-//     }
-//     if (nowIndex >= digits.length) {
-//         return;
-//     }
-//     let index = digits[nowIndex] - 2; // 当前对应模板索引
-//     let now = template[index]; // 当前位置对应的字符映射
-//     let curLength = now.length; // 所对应模板长度
-
-//     for (let i = nowIndex; i <= digits.length - 1; i++) {
-//         for (let j = 0; j < curLength; j++) {
-//             cur.push(now[j]);
-//             progress(digits, template, i + 1);
-//             cur.pop();
-//         }
-//     }
-// }
-// letterCombinations('23');
-// console.log(result);
-
-
-let cur = [];
-let result = [];
 /**
- * @param {string} digits
- * @return {string[]}
+ * @param {string} s
+ * @return {number}
  */
-var letterCombinations = function(digits) {
-    let template = [
-        '',
-        '',
-        'abc',
-        'def',
-        'ghi',
-        'jkl',
-        'mno',
-        'pqrs',
-        'tuv',
-        'wxyz',
-    ]
-    if (digits.length === 1) {
-        result = template[digits[0]];
-        return;
+ var longestPalindromeSubseq = function(s) {
+    let dp = Array.from(Array(s.length), () => Array(s.length).fill(0));
+    
+    for (let i = 0; i < s.length; i++) {
+        dp[i][i] = 1;
     }
-    digits = digits.split('');
-    return progress(digits, template, 0, cur, result);
+
+    for (let i = s.length - 1; i >= 0; i--) {
+        for (let j = i; j < s.length; j++) {
+            if (s[i] === s[j]) {
+                console.log(i , j);
+                dp[i][j] = dp[i + 1][j - 1] + 2;
+            } else {
+                dp[i][j] = Math.max(dp[i + 1][j], dp[i][j - 1]);
+            }
+        }
+    }
+    return dp[0][s.length - 1]
 };
-function progress(digits, template, nowIndex, cur, result) {
-    if (cur.length === digits.length) {
-        result.push([...cur].join(''));
-        return;
-    }
-    for (var i = 0; i < template[digits[nowIndex]].length; i++) {
-        cur.push((template[digits[nowIndex]])[i]);                                                                                                                                                                                 
-        progress(digits, template, nowIndex + 1, cur, result);
-        cur.pop();
-    }
-    return;
-}
-letterCombinations('23');
-console.log(result);
+longestPalindromeSubseq("bbbab");

@@ -1,6 +1,7 @@
 /**
  * @param {string} s
  * @return {number}
+ * 动态规划
  */
 var countSubstrings = function(s) {
     let dp = Array.from(Array(s.length), () => Array(s.length).fill(false));
@@ -27,3 +28,45 @@ var countSubstrings = function(s) {
     }
     return result;
 }
+
+/**
+ * @param {string} s
+ * @return {number}
+ * 双指针做法
+ */
+var countSubstrings2 = function(s) {
+    let result = 0;
+    for (let i = 0; i < s.length; i++) {
+        // 左右指针有两种情况
+        // 1、只有1个中心点：i
+        // 2、有2个中心点：i、i+1
+
+        // 按理来说中心点有n个，但是奇数的中心点可以由1个中心点推出，偶数的中心点可以由2个中心点推出
+        result += extend(s, i, i, s.length);
+        result += extend(s, i, i + 1, s.length);
+    }
+    return result;
+
+    /**
+     * 使用双指针解决回文子串长度
+     * @param {string} s 目标字符串
+     * @param {number} i 中心点1
+     * @param {number} j 中心点2
+     * @param {number} n 字符串长度
+     * @returns 回文子串长度
+     */
+    function extend(s, i, j, n) {
+        let res = 0;
+        // i为左指针
+        // j为右指针
+        // 循环，i 左移动，j 右移动，当两者相等时，记录进行增加
+        while(i >= 0 & j < n && s[i] == s[j]) {
+            i--;
+            j++;
+            res++;
+        }
+
+        return res;
+    }
+}
+console.log(countSubstrings2('1234'));
