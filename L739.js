@@ -3,43 +3,21 @@
  * @return {number[]}
  */
 var dailyTemperatures = function(temperatures) {
-    // const n = temperatures.length;
-    // const res = Array(n).fill(0);
-    // const stack = []; // 递增栈：用于存储元素右面第一个比他大的元素下表
-    // stack.push(0);
-
-    // for (let i = 1; i < n; i++) {
-    //     // 栈顶元素
-    //     const top = stack[stack.length - 1];
-    //     if (temperatures[i] < temperatures[top]) {
-    //         stack.push(i);
-    //     } else if (temperatures[i] === temperatures[top]) {
-    //         stack.push(i);
-    //     } else {
-    //         while (stack.length && temperatures[i] > temperatures[stack[stack.length - 1]]) {
-    //             const top = stack.pop();
-    //             res[top] = i - top;
-    //         }
-    //         stack.push(i);
-    //     }
-    // }
-    // return res;
-
-    const n = temperatures.length;
-    let stack = [];
+    const len = temperatures.length;
+    const res = [];
+    let stack = []; // 单调栈（存放的是索引值），保存还未找到比里面值大的索引
     stack.push(0);
-    let res = Array(n).fill(0);
-    
-    for (let i = 1; i < n; i++) {
-        if (temperatures[i] <= stack[stack.length - 1]) {
-            stack.push(i);
-        } else {
-            while (stack.length && stack[stack.length - 1] < temperatures[i]) {
-                const top = stack.pop();
-                res[top] = i - top;
-                stack.push(i);
-            }
+
+    for (let i = 1; i < len; i++) {
+        // 当栈中还存在值 和 当前值比栈顶中的值要大的话，则进入循环
+        while (stack.length && temperatures[i] > temperatures[stack[stack.length - 1]]) {
+            // 获取栈顶
+            const top = stack.pop();
+            // 赋值为当前索引与栈顶的差值
+            res[top] = i - top;
         }
+        // 栈中继续放入当前索引值
+        stack.push(i);
     }
     return res;
 };
