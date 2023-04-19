@@ -1,12 +1,14 @@
 /**
+ * 时间复杂度为On+3，这个写法会比官解要好
  * @param {number[]} fruits
  * @return {number}
  */
- var totalFruit = function(fruits) {
+var totalFruit = function (fruits) {
     let map = new Map();
     let maxNum = 1;
     let left = 0;
     fruits.forEach((item, i) => {
+        // 这里只记录最后出现的位置
         map.set(item, i);
         // 当map集合的容量大于2时，左指针进行滑动
         if (map.size > 2) {

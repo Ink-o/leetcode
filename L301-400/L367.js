@@ -1,8 +1,9 @@
 /**
+ * 直接二分法就可以解决了，这里求的是整数
  * @param {number} num
  * @return {boolean}
  */
-var isPerfectSquare = function(num) {
+var isPerfectSquare = function (num) {
     let left = 0,
         right = num + 1;
     while (left < right) {

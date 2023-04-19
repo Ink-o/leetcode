@@ -1,24 +1,9 @@
 /**
+ * 这里只是求最接近 x 平方根的整数，所以只需要在
  * @param {number} x
  * @return {number}
  */
-// var mySqrt = function(x) {
-//     let left = 0,
-//         right = x + 1,
-//         result;
-//     while (left < right) {
-//         let mid = Math.floor((left + ((right - left) / 2) ));
-//         if (mid * mid <= x) {
-//             result = mid;
-//             left = mid + 1;
-//         } else {
-//             right = mid;
-//         }
-//     }
-//     return result;
-// };
-
-var mySqrt = function(x) {
+var mySqrt = function (x) {
     let left = 0;
     let right = x + 1;
     let mid;
