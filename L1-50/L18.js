@@ -3,37 +3,47 @@
  * @param {number} target
  * @return {number[][]}
  */
-var fourSum = function(nums, target) {
-    const res = [];
-    const len = nums.length;
-    nums.sort((a,b)=>a-b);
-    for (let i = 0; i < len - 3; i++) {
-        if (nums[i] > target) {
-            break;     
-        }
-        if (i > 0 && nums[i] === nums[i - 1]) continue;
-        const point1 = i;
-        for (let j = i + 1; j < len - 2; j++) {
-            if (j > i + 1 && nums[j] === nums[j - 1]) continue;
-            const point2 = j;
-            let l = j + 1;
-            let r = len - 1;
-            while (l < r) {
-                const sum = nums[point1] + nums[point2] + nums[l] + nums[r];
-                if (sum < target) {
-                    l++;
-                    continue;
-                }
-                if (sum > target) {
-                    r--;
-                    continue;
-                }
-                res.push([nums[point1], nums[point2], nums[l], nums[r]]);
-                while (l < r && nums[l]===nums[++l]);
-                while (l < r && nums[r]===nums[--r]);
-            }
-        }
+var fourSum = function (nums, target) {
+  const res = []
+  // 从小到大排序
+  nums.sort((a, b) => a - b)
+  for (let i = 0; i < nums.length - 2; i++) {
+    // i 去重
+    if (i > 0 && nums[i] === nums[i - 1]) {
+      continue
     }
-    console.log(res);
+    for (let j = i + 1; j < nums.length - 1; j++) {
+      // ⭐️ j 去重，注意这里是 j - i > 1，因为要是 j 走过的轨迹
+      // 如果只有 nums[j] === nums[j - 1] 这个条件的话，那么 i 走过的也会被算上
+      if ((j - i) > 1 && nums[j] === nums[j - 1]) {
+        continue
+      }
+      let left = j + 1
+      let right = nums.length - 1
+      // 双指针解法
+      while (left < right) {
+        const cur = nums[i] + nums[j] + nums[left] + nums[right]
+        if (cur < target) {
+          left++
+          continue
+        }
+        if (cur > target) {
+          right--
+          continue
+        }
+        res.push([nums[i], nums[j], nums[left], nums[right]])
+        // 左右指针移动
+        while (left < right && nums[left] === nums[left + 1]) {
+          left++
+        }
+        while (left < right && nums[right] === nums[right - 1]) {
+          right--
+        }
+        left++
+        right--
+      }
+    }
+  }
+  return res
 };
-fourSum([2,2,2,2,2], 8);
+fourSum([2, 2, 2, 2, 2], 8);

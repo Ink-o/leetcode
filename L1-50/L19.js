@@ -10,21 +10,21 @@
  * @param {number} n
  * @return {ListNode}
  */
-var removeNthFromEnd = function(head, n) {
-    let dummpyHead = new ListNode(0, head);
-    let fast = dummpyHead;
-    let slow = dummpyHead;
-    // fast指针先往前走n步
-    while(fast && n--) {
-        fast = fast.next;
-    }
-    fast = fast.next; // fast指针需要再走一步，因为需要slow指向被删除节点的前一个节点
-    while (fast) {
-        fast = fast.next;
-        slow = slow.next;
-    }
-    if (slow) {
-        slow.next.next = slow.next;
-    }
-    return dummpyHead.next;
+var removeNthFromEnd = function (head, n) {
+  let dumpHead = new ListNode('', head)
+  // 这里先以 dumpHead 开头，下面实际的行走n步就是走到第n格
+  let fast = slow = dumpHead
+
+  // fast 前进 n 步
+  while (n--) {
+    fast = fast.next
+  }
+  // ⭐️直到 fast 到最后一个节点（注意这里是 fast.next）不需要越界
+  while (fast.next) {
+    fast = fast.next
+    slow = slow.next
+  }
+
+  slow.next = slow.next.next
+  return dumpHead.next
 }

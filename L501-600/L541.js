@@ -3,20 +3,28 @@
  * @param {number} k
  * @return {string}
  */
-var reverseStr = function(s, k) {
-    const len = s.length;
-    let resArr = s.split('');
-    // i每次移动2k个位置，l位置为i - 1，r位置为i+k
-    for (let i = 0; i < len; i += 2*k) {
-        // i: 0 l: 0 r: 3
-        // 交换只是++l 和 --r交换
-        let l = i - 1, // l为这次范围的头 - 1
-            r = i + k > len ? len : i + k; // r为这次范围的尾 + 1
-        while (++l < --r) {
-            // 解构赋值
-            [resArr[l], resArr[r]] = [resArr[r], resArr[l]]
-        }
+var reverseStr = function (s, k) {
+  const arr = s.split('')
+  // 每次前进 2k 步
+  for (let i = 0; i < arr.length; i += 2 * k) {
+    // 当前指针 + k 如果没有越界的话，则直接取 i + k - 1 作为右边界作为替换
+    if (i + k <= s.length) {
+      reverse(arr, i, i + k - 1)
+      continue
     }
-    return resArr.join('');
+    // 越界的情况下，直接去 len - 1 做为右边界值
+    reverse(arr, i, arr.length - 1)
+  }
+  function reverse(arr, left, right) {
+    while (left < right) {
+      const temp = arr[left]
+      arr[left] = arr[right]
+      arr[right] = temp
+
+      left++
+      right--
+    }
+  }
+  return arr.join('')
 };
 console.log(reverseStr('abcdefg', 2));

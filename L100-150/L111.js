@@ -9,10 +9,10 @@
 /**
  * @param {TreeNode} root
  * @return {number}
- * 左右孩子都为空的节点才是叶子节点，递归计算的时候需要注意这个点
+ * 左右孩子都为空的节点才是叶子节点，递归计算的时候需要注意这个点
  #
  */
-var minDepth = function(root) {
+var minDepth = function (root) {
     // 节点为空直接返回0
     // 递归
     if (!root) {

@@ -7,6 +7,48 @@
  */
 
 /**
+ * c+++版本，推荐
+ * @param {ListNode} head
+ * @return {ListNode}
+ */
+var detectCycle = function(head) {
+  let slow = head
+  let fast = head
+
+  while (fast && fast.next) {
+    // 快指针移动2步
+    // 慢指针移动1步
+    slow = slow.next
+    fast = fast.next.next
+
+    // 这里的相遇是以内存地址为对比
+    if (fast === slow) {
+      // 慢指针回到链表头
+      let i1 = head
+      let i2 = fast
+
+      // 快慢指针各自前进一步直到相等
+      while (i1 !== i2) {
+        i1 = i1.next
+        i2 = i2.next
+      }
+      // 最后进行返回
+      return i1
+    }
+  }
+  return null
+}
+
+
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
+
+/**
  * @param {ListNode} head
  * @return {ListNode}
  */
