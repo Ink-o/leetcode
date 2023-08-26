@@ -1,29 +1,27 @@
-// 给定两个整数 n 和 k，返回范围 [1, n] 中所有可能的 k 个数的组合。你可以按 任何顺序 返回答案。
 /**
  * @param {number} n
  * @param {number} k
  * @return {number[][]}
  */
-let cur = [];
-let result = [];
-var combine = function(n, k) {
-    if (n === 1) {
-        return [[n]];
+var combine = function (n, k) {
+  let res = []
+  function process(start, cur = []) {
+    if (cur.length >= k) {
+      res.push([...cur])
+      return
     }
-    return progress(n, k, 1);
+    // 未变形边界为 n - i >= k - cur.length + 1（剩余的元素要大于 cur 所还需要的元素，为什么这里还需要+1，因为包含了起始位置）
+    // 已经选择的元素：cur.length
+    // 还需要的元素个数：k - cur.length + 1
+    // 本次循环中还剩余的元素：n - i
+    // k - cur.length 为离 cur.length === k 还差几个元素
+    for (let i = start; i <= n - (k - cur.length) + 1; i++) {
+      cur.push(i)
+      process(i + 1, cur)
+      cur.pop()
+    }
+  }
+  process(1, [])
+  return res
 };
-function progress(n, k, startIndex) {
-    if (cur.length == k) {
-        result.push([...cur]);
-        return;
-    }
-    for (let i = startIndex; i <= n ; i++) {
-        cur.push(i); // 回溯前先将元素进行压栈
-        console.log(i);
-        progress(n, k, i + 1);
-        cur.pop(); // 回溯完毕后将元素进行出栈
-    }
-    return result;
-}
- combine(2, 1, 1);
- console.log(result);
+console.log(combine(4, 2));

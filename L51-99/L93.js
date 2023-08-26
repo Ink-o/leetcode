@@ -2,36 +2,36 @@
  * @param {string} s
  * @return {string[]}
  */
-var restoreIpAddresses = function(s) {
-    let path = [];
-    let result = [];
-    let restLen = s.length;
-    let len = s.length;
-    return progress(0);
-    function progress(startIndex) {
-        if (path.length === 4) {
-            if (restLen !== 0) {
-                return;
-            }
-            result.push(path.join('.'));
-            return;
-        }
-        for (let i = startIndex; i < len; i++) {
-            if (i + 1 - startIndex > 3 || !isIp(s.substring(startIndex, i + 1))) {
-                continue;
-            }
-            path.push(s.substring(startIndex, i + 1));
-            restLen = restLen - (i + 1 - startIndex);
-            progress(i + 1);
-            path.pop();
-            restLen = restLen + (i + 1 - startIndex);
-        }
-        return result;
+var restoreIpAddresses = function (s) {
+  const res = []
+  const cur = []
+  function progress(startIndex) {
+    // 当 cur 收集了 4 个值，并且 startIndex 走到了尾部，这时才可以对 res 进行收集
+    // 原因：得使用完整个字符串
+    if (cur.length === 4 && startIndex === s.length) {
+      res.push(cur.join('.'))
+      return
     }
+    for (let i = startIndex; i < s.length; i++) {
+      // 当数量大于3或者当前区间截取的ip不符合，则结束本次循环
+      if (i + 1 - startIndex > 3 || !isIp(s.substring(startIndex, i + 1))) {
+        break
+      }
+      // 新增截取子串
+      cur.push(s.substring(startIndex, i + 1))
+      progress(i + 1)
+      // 回溯
+      cur.pop()
+    }
+  }
+  function isIp(s) {
+    // 以0开头，并且长度大于1
+    if (s[0] == 0 && s.length > 1) return false
+    // 数值大于255
+    if (Number(s) > 255) return false
+    return true
+  }
+  progress(0)
+  return res
 };
-function isIp(str) {
-    if (str == 0 && str.length == 0) return true;
-    if (str.indexOf('0') == 0 || Number(str) > 255) return false;
-    return true;
-}
 console.log(restoreIpAddresses('25525511135'));

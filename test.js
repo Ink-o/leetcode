@@ -1,22 +1,25 @@
 /**
- * Definition for a binary tree node.
- * function TreeNode(val, left, right) {
- *     this.val = (val===undefined ? 0 : val)
- *     this.left = (left===undefined ? null : left)
- *     this.right = (right===undefined ? null : right)
- * }
+ * @param {string} num1
+ * @param {string} num2
+ * @return {string}
  */
-/**
- * @param {TreeNode} root
- * @param {number} val
- * @return {TreeNode}
- */
-var searchBST = function (root, val) {
-  if (!root) return null
-  if (root.val < val) {
-    return searchBST(root.left, val)
-  } else if (root.val < val) {
-    return searchBST(root.right, val)
+var addStrings = function(num1, num2) {
+  let len1 = num1.length - 1
+  let len2 = num2.length - 1
+  let num = 0
+  let str = ''
+
+  while (len1 >= 0 || len2 >= 0 || num !== 0) {
+    const x = len1 >= 0 ? +num1[len1] : 0
+    const y = len2 >= 0 ? +num2[len2] : 0
+
+    const sum = x + y + num
+    str = (sum % 10) + str
+    num = Math.floor(sum / 10)
+
+    len1--
+    len2--
   }
-  return root
-};
+  return str
+}
+console.log(addStrings("584", "18"));

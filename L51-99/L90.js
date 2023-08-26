@@ -2,26 +2,23 @@
  * @param {number[]} nums
  * @return {number[][]}
  */
-var subsetsWithDup = function(nums) {
-    let cur = [];
-    let res = [];
-    let len = nums.length;
-    let selectedSet = new Set();
-    nums.sort((a,b) => a - b);
-    return progress(0);
-    function progress(startIndex) {
-        res.push(cur.slice())
-        for (let i = startIndex; i < len; i++) {
-            if (!selectedSet.has(i - 1) && nums[i] == nums[i - 1]) {
-                continue;
-            }
-            selectedSet.add(i);
-            cur.push(nums[i]);
-            progress(i + 1);
-            cur.pop();
-            selectedSet.delete(i);
-        }
-        return res;
+var subsetsWithDup = function (nums) {
+  const res = []
+  const cur = []
+  // 这里得先排序，从小到大进行排列，保证有序
+  nums.sort((a, b) => a - b)
+  function process(startIndex) {
+    res.push([...cur])
+    for (let i = startIndex; i < nums.length; i++) {
+      // i > startIndex 代表在同一水平的树层，如果 nums[i] === nums[i - 1] 满足的话，则说明在同一水平的树层上出现了相同的元素
+      if (i > startIndex && nums[i] === nums[i - 1]) {
+        continue
+      }
+      cur.push(nums[i])
+      process(i + 1)
+      cur.pop()
     }
+  }
+  process(0)
+  return res
 };
-console.log(subsetsWithDup([0]));

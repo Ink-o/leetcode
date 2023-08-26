@@ -1,65 +1,73 @@
 /**
+ * 思路：维护行列的数据类型，每添加一个新行都要判断是否存在对角关系
  * @param {number} n
  * @return {string[][]}
  */
-var solveNQueens = function(n) {
-    let path = [];
-    let result = [];
-    let rowMap = new Map();
-    let columnSet = new Set();
-    progress(0);
+var solveNQueens = function (n) {
+  let path = [];
+  let result = [];
+  // k为层级，v为占用列（x为k，v为y）
+  let rowMap = new Map();
+  // 收集占用的列
+  let columnSet = new Set();
+  progress(0);
+  return result;
+  function progress(level) {
+    if (path.length === n) {
+      result.push([...path]);
+      return;
+    }
+    for (let i = 0; i < n; i++) {
+      if (
+        level !== 0 &&
+        (
+          columnSet.has(i) || // 判断当前列是否被使用过
+          isDuijiao(level, i) // ⭐️判断对角是每一个层级都要进行判断，不仅仅是相邻的层
+        )
+      ) {
+        continue;
+      }
+      // 维护使用过的列和行列坐标
+      columnSet.add(i);
+      rowMap.set(level, i);
+      path.push(generatePath(n, i));
+      progress(level + 1);
+      // 回溯
+      columnSet.delete(i);
+      path.pop();
+      rowMap.delete(level);
+    }
+  }
+  function isDuijiao(x, y) {
+    let result = false;
+    // 是否在同一对角线上，公式|x - x1| == |y - y1|，若相同则相等
+    // ⭐️注意这里的 val 是列位置，key 是行位置。set 进去的值是 i ，也就是 y
+    rowMap.forEach((val, key) => {
+      let y1 = val; // 列位置
+      let x1 = key; // 行位置
+      if (Math.abs(x1 - x) == Math.abs(y - y1)) {
+        result = true;
+      }
+    });
     return result;
-    function progress(level) {
-        if (path.length === n) {
-            result.push([...path]);
-            return;
-        }
-        for (let i = 0; i < n; i++) {
-            if (
-                level !== 0 &&
-                (columnSet.has(i) ||
-                rowMap.get(level - 1) === i || 
-                isDuijiao(level, i))) {
-                continue;
-            }
-            columnSet.add(i);
-            rowMap.set(level, i);
-            path.push(generatePath(n, i));
-            progress(level + 1);
-            columnSet.delete(i);
-            path.pop();
-            rowMap.delete(level);
-        }
+  }
+  function generatePath(len, index) {
+    if (index === 0) {
+      return 'Q' + '.'.repeat(len - 1);
     }
-    function isDuijiao(x, y) {
-        let result = false;
-        // 是否在同一对角线上，公式|x - x1| == |y - y1|，若相同则相等
-        rowMap.forEach((val, key) => {
-            let y1 = val; // 列位置
-            let x1 = key; // 行位置
-            if (Math.abs(x1 - x) == Math.abs(y - y1)) {
-                result = true;
-            }
-        });
-        return result;
+    if (index === len - 1) {
+      return '.'.repeat(len - 1) + 'Q';
     }
-    function generatePath(len, index) {
-        if (index === 0) {
-            return 'Q' + '.'.repeat(len - 1);
-        }
-        if (index === len - 1) {
-            return '.'.repeat(len - 1) + 'Q';
-        }
-        return '.'.repeat(index) + 'Q' + ('.'.repeat(len - index - 1));
-    }
+    return '.'.repeat(index) + 'Q' + ('.'.repeat(len - index - 1));
+  }
 };
-
+console.log(solveNQueens(4));
 
 // console.log(solveNQueens(5));
 
 
 // 代码随想录版本
-var solveNQueens2 = function(n) {
+var solveNQueens2 = function (n) {
   let result = []
   function transformChessBorad(chessBorad) {
     let chessBoradBack = [];
@@ -115,8 +123,8 @@ var solveNQueens2 = function(n) {
 // solveNQueens2(4)
 
 
-// 位运算版
-var solveNQueens3 = function(n) {
+// 位运算版（只返回数量）
+var solveNQueens3 = function (n) {
   let res = 0
   const dfs = (n, row, cols, pie, na) => {
     if (row === n) {
@@ -132,7 +140,7 @@ var solveNQueens3 = function(n) {
     const pos = (1 << n) - 1
     // 得到当前所有的空位。这里初始化的时候全部都为1，bits中的1是表示可以存放皇后
     let bits = (~(cols | pie | na)) & ((1 << n) - 1)
-    
+
     while (bits) { // 当bits不为0的时候，继续再往下走
       let p = bits & -bits // 取到最低位的1，获取当前皇后的存放位置
 
@@ -145,7 +153,7 @@ var solveNQueens3 = function(n) {
       dfs(n, row + 1, cols | p, (pie | p) << 1, (na | p) >> 1)
       // 放置皇后成功，将最低位1置0
       bits = bits & (bits - 1) //  放上皇后，把最低位变成0？
-      
+
       // 由于 cols、pie、na是在函数内部，所以不需要进行重置
     }
   }
