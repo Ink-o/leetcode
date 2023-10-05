@@ -15,8 +15,9 @@ var canCompleteCircuit = function (gas, cost) {
     all += (gas[i] - cost[i]);
     // 当当前剩余油量小于0，那么重置当前剩余油量为0，并且更新起始位置为 i + 1，因为当前的已经不满足了
     if (cur < 0) {
+      // 当前剩余油量更改为 0
       cur = 0;
-      // 更新 start 起点
+      // 更新 start 起点 为 i + 1，因为当前的 i 一定是不满足条件的。cur 小于 0 是不允许的
       start = i + 1
     }
   }

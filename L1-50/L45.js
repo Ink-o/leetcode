@@ -1,4 +1,5 @@
 /**
+ * 核心点：记录增加步数后能达到的最大范围。在本次步数走不到终点的时候添加步数，以到达终点
  * @param {number[]} nums
  * @return {number}
  */
@@ -18,4 +19,27 @@ var jump = function (nums) {
     }
   }
   return step;
+};
+
+
+/**
+ * 复杂写法，里面包含着是否能到达的逻辑
+ * @param {number[]} nums
+ * @return {number}
+ */
+var jump2 = function (nums) {
+  if (nums.length === 1) return 0
+  let nextStep = 0
+  let curStep = 0
+  let ans = 0
+
+  for (let i = 0; i < nums.length; i++) {
+    nextStep = Math.max(nextStep, nums[i] + i)
+    if (i === curStep) {
+      ans++
+      curStep = nextStep
+      if (curStep >= nums.length - 1) return ans
+    }
+  }
+  return ans
 };

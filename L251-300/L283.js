@@ -1,42 +1,18 @@
-// 自己写的方法
-// var moveZeroes = function(nums) {
-//     let fast = 1,
-//         len = nums.length;
-//     for (let i = 0; i < len; i++) {
-//         const element = nums[i];
-//         // 需要替换
-//         if (element === 0) {
-//             // 快指针寻找下一个不为0的数据
-//             while (nums[fast] === 0 && fast < len) {
-//                 fast++;
-//             }
-//             if (fast === len) {
-//                 break;
-//             }
-//             let tmp = nums[fast];
-//             nums[fast] = nums[i];
-//             nums[i] = tmp;
-//             fast++;
-//             continue;
-//         }
-//         if (++fast === len) {
-//             break;
-//         }
-//     }
-// };
-
-// 官解
-var moveZeroes = function(nums) {
-    let n = nums.length, slow = 0, fast = 0;
-    while (fast < n) {
-        if (nums[fast] !== 0) {
-            let tmp = nums[fast];
-            nums[fast] = nums[slow];
-            nums[slow] = tmp;
-            slow++;
-        }
-        fast++;
+/**
+ * https://leetcode.cn/problems/move-zeroes/solutions/90229/dong-hua-yan-shi-283yi-dong-ling-by-wang_ni_ma/?envType=study-plan-v2&envId=top-100-liked
+ * @param {number[]} nums
+ * @return {void} Do not return anything, modify nums in-place instead.
+ */
+var moveZeroes = function (nums) {
+  // 基准元素索引
+  let slow = 0
+  for (let i = 0; i < nums.length; i++) {
+    // 将不等于 0 的元素都放到基准元素左侧
+    if (nums[i] !== 0) {
+      const tmp = nums[i]
+      nums[i] = nums[slow]
+      nums[slow] = tmp
+      slow++
     }
-    console.log(nums);
-}
-moveZeroes([4,2,4,0,0,3,0,5,1,0]);
+  }
+};

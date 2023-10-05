@@ -15,3 +15,25 @@ var groupAnagrams = function (strs) {
   }
   return Object.values(obj)
 }
+
+/**
+ * 更优：
+ * 使用质数，性质：任何两个不同的质数的乘积都是唯一的
+ * 例如 aba 和 aab，他们得出来的乘积就是一样的了
+ */
+var groupAnagrams = function (strs) {
+  const prime = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101]
+  const map = new Map()
+  for (const curStr of strs) {
+    let sum = 1
+    for (let i = 0; i < curStr.length; i++) {
+      sum *= prime[curStr[i].charCodeAt() - 97]
+    }
+    if (map.has(sum)) {
+      map.get(sum).push(curStr)
+    } else {
+      map.set(sum, [curStr])
+    }
+  }
+  return [...map.values()]
+};

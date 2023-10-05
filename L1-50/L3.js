@@ -35,11 +35,13 @@ var lengthOfLongestSubstring2 = function (s) {
   // right 指针一直往前走
   while (right < s.length) {
     const cur = s[right]
-    right++
     window.set(cur, (window.get(cur) || 0) + 1)
+    // 这个 right 自增要在获取最新长度前自增，要不然后面获取长度会缺1
+    right++
 
     // 遇到重复字段，map 进行删减
     while (window.get(cur) > 1) {
+      // 左指针开始移动，对原本的 map 记录进行删减
       const l = s[left]
       left++
       window.set(l, window.get(l) - 1)

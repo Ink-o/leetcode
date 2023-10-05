@@ -1,22 +1,50 @@
 /**
- * 思路：大饼干优先喂给胃口大的孩子，小饼干优先喂给胃口小的孩子。这个就是局部最优解
- * @param {number[]} g 孩子的胃口值
- * @param {number[]} s 饼干值
+ * 思路：大饼干喂饱胃口大的。
+ * @param {number[]} g 胃口
+ * @param {number[]} s 食物
  * @return {number}
  */
 var findContentChildren = function (g, s) {
-  // 胃口和饼干值都是从小到大进行排序
-  s = s.sort((a, b) => a - b);
-  g = g.sort((a, b) => a - b);
-  let gIndex = 0;
-  // 外层遍历饼干值（一定是饼干先遍历，饼干不满足胃口值可以跳过饼干，但是孩子不可以跳过）
-  for (let i = 0; i < s.length; i++) {
-    // 如果遇到饼干值小于胃口的情况，则继续进行循环
-    // gIndex就是当前到达的孩子
-    if (gIndex < g.length && s[i] >= g[gIndex]) {
-      gIndex++;
+  // 胃口与食物从小到大排序
+  g.sort((a, b) => a - b)
+  s.sort((a, b) => a - b)
+
+  // 食物索引从最大的位置开始
+  let sIndex = s.length - 1
+  let count = 0
+
+  // 从最大的胃口开始遍历，给予最大的食物
+  for (let i = g.length - 1; i >= 0; i--) {
+    // 如果当前饼干能满足当前孩子的胃口，则对饼干进行消耗
+    if (g[i] <= s[sIndex] && sIndex >= 0) {
+      // 数量 + 1
+      count++
+      // 食物数量索引减一
+      sIndex--
     }
   }
-  return gIndex;
+  return count
 };
-console.log(findContentChildren([1, 3, 5, 7], [1, 0]));
+
+/**
+ * 思路：小饼干喂饱胃口小的。
+ * @param {number[]} g 胃口
+ * @param {number[]} s 食物
+ * @return {number}
+ */
+var findContentChildren2 = function (g, s) {
+  g.sort((a, b) => a - b)
+  s.sort((a, b) => a - b)
+
+  let gIndex = 0
+  // 从最小的饼干开始遍历
+  for (let i = 0; i < s.length; i++) {
+    // 如果饼干满足情况，则孩子索引+1
+    if (s[i] >= g[gIndex] && gIndex < g.length) {
+      gIndex++
+    }
+  }
+
+  return gIndex
+}
+findContentChildren([10, 9, 8, 7], [5, 6, 7, 8])
