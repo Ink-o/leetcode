@@ -15,7 +15,7 @@ var partitionLabels = function (s) {
 
   // 再次进行循环，
   for (let i = 0; i < s.length; i++) {
-    // 更新字符串的最右边界
+    // 更新字符串的最右边界（这里右边界一定要放在前面更新，要不然就延时了）
     right = Math.max(right, hash[s[i]]);
 
     // 如果当前索引与右边界重合，那么，这就是一个切割区域

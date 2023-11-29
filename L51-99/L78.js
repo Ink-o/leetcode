@@ -11,6 +11,7 @@ var subsets = function (nums) {
     for (let i = startIndex; i < nums.length; i++) {
       // 回溯
       cur.push(nums[i])
+      // 这里传递的是 i + 1，切记，否则会收集到重复的元素
       process(i + 1)
       cur.pop()
     }

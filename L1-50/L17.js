@@ -1,4 +1,5 @@
 /**
+ * 思路：n 个不同的按钮里面的元素多次进行组合
  * @param {string} digits
  * @return {string[]}
  */
@@ -29,10 +30,12 @@ var letterCombinations = function (digits) {
     // cur 收集满后放入到res中
     if (cur.length === len) {
       res.push(cur.join(''))
+      // 这里直接 return 掉，因为后面再收集的元素都会超出范围
       return
     }
-    // 每次遍历取特定的 strArr 的索引
+    // 每次遍历取特定的 strArr 下标，代表的是不同按键
     const str = strArr[start]
+    // 这里的起始索引都是 0，为了让 2 个按键的元素能一一匹配
     for (let j = 0; j < str.length; j++) {
       // 进出栈处理
       cur.push(str[j])

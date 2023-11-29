@@ -1,8 +1,19 @@
-// 这里是3个节点来进行处理
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * 使用3个点来进行替换，需要一个前置节点
+ * @param {ListNode} head
+ * @return {ListNode}
+ */
 let swapPairs = function (head) {
   let ret = new ListNode(0, head);
   let temp = ret;
-  // 交换对象是两个，.next和.next.next 如果只有一个存在的话则不再进行循环
+  // 交换对象是两个，.next和.next.next 如果只有一个存在的话则不用再进行交换
   while (temp.next && temp.next.next) {
     // 节点2
     let cur = temp.next.next;

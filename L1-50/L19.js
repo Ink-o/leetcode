@@ -19,7 +19,7 @@ var removeNthFromEnd = function (head, n) {
   while (n--) {
     fast = fast.next
   }
-  // ⭐️直到 fast 到最后一个节点（注意这里是 fast.next）不需要越界
+  // ⭐️直到 fast 到最后一个节点（注意这里是 fast.next，就是要走到最后一个元素）不需要越界
   while (fast.next) {
     fast = fast.next
     slow = slow.next

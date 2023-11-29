@@ -12,7 +12,7 @@ var canJump = function (nums) {
 
   // 这个范围是闭合的
   for (let i = 0; i <= range; i++) {
-    // 更新最大可跳范围
+    // 更新最大可跳范围（这里更新的是索引）
     range = Math.max(range, i + nums[i]);
     // 当范围超过了最后一个索引的时候，直接返回true
     if (range >= nums.length - 1) {

@@ -18,6 +18,7 @@ var partition = function (s) {
     for (let i = startIndex; i < len; i++) {
       // 判断startIndex到达i的位置截取的字符串是否为回文，如果为非回文，则直接跳过
       if (!isPalindrom(s, startIndex, i)) continue;
+      // 如果确定为回文的情况下，直接添加进 path
       path.push(s.substring(startIndex, i + 1));
       backtracking(i + 1);
       path.pop();

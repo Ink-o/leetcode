@@ -10,12 +10,13 @@ var combinationSum = function (candidates, target) {
   // pre：上次计算出来的结果
   function process(startIndex, pre) {
     // 计算结果大于 target 则终止循环
-    // if (pre > target) return
+    if (pre > target) return
     if (pre === target) {
       res.push([...cur])
       return
     }
     // 从 startIndex 开始循环
+    // 起点不能为 0，因为先前用过的元素，在每次为 0 的话，会生成重复的结果
     for (let i = startIndex; i < candidates.length; i++) {
       const ele = candidates[i]
       // 进栈

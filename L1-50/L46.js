@@ -5,8 +5,6 @@
 var permute = function (nums) {
   const cur = []
   const res = []
-  // 先从小到大排序
-  nums.sort((a, b) => a - b)
   function process(used) {
     if (cur.length === nums.length) {
       res.push([...cur])

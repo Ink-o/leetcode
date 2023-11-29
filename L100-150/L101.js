@@ -59,6 +59,7 @@ var isSymmetric2 = function (root) {
     }
 
     // 其他情况下的相等，并且左右子树都有值
+    // 注意，这里不支持判断 left.val === right.val。因为不是一个简单的表层判断
     // 3、确认单层递归逻辑
     // 外层判断是否相等
     let outSide = compareNode(left.left, right.right);
