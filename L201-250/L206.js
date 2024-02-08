@@ -11,21 +11,22 @@
  * 迭代
  */
 var reverseList = function (head) {
-  if (!head || !head.next) return head;
-  let cur = null, pre = null, tmp = null;
-  while (cur) {
-    // 1、保存cur的next
-    tmp = cur.next;
-    // 2、更新cur.next指向前一个元素
-    cur.next = pre;
-    // 3、更新pre为cur
-    pre = cur;
-    // 4、cur继续按照正常原本的next往下走
-    cur = tmp;
+  // 上一个节点置为空
+  let pre = null
+
+  // heade 作为当前指针
+  while (head) {
+    // 保存下一个节点
+    let next = head.next
+    // 操作当前节点指向上一个节点
+    head.next = pre
+
+    // 指针移动
+    pre = head
+    head = next
   }
-  // 返回前置指针，因为cur必定为null，此时的pre必为尾部
-  return pre;
-}
+  return pre
+};
 
 // 递归，处理思想与迭代一致
 var reverseList = function (head) {

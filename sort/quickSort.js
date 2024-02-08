@@ -1,5 +1,4 @@
 // 快速排序
-
 function quickSort(nums, start, end) {
   if (start >= end) return nums
   // 获取分区元素索引，这个分区元素对应的元素的顺序就已经排序好了
@@ -23,7 +22,8 @@ function patition(nums, start, end) {
   for (let i = start; i < end; i++) {
     const val = nums[i];
     // 如果当前元素比基准元素要小，当前元素就与替换元素指针对应的元素进行替换
-    // 然后替换元素指针自增 1
+    // 然后替换元素指针自增 1（这就相当于 val 移动到了 startIndex 的左边了，确认比基准元素小的元素在左边）
+    // 将比基准元素小的元素移动到 pivotIndex 的左边
     if (val < pivotVal) {
       [nums[i], nums[startIndex]] = [nums[startIndex], nums[i]]
       startIndex++

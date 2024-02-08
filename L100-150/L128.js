@@ -6,7 +6,7 @@ var longestConsecutive = function (nums) {
   for (let i = 0; i < arr.length; i++) {
     // 注意这里需要取准确值，目标值为arr
     let cur = arr[i];
-    // 只有当num - 1不存在时，才开始向后遍历num+1,num+2,num+3
+    // 只有当num - 1不存在时，才开始向后遍历num+1,num+2,num+3（确保此时是最小值）
     if (!set.has(cur - 1)) {
       while (set.has(cur + 1)) {
         cur++;

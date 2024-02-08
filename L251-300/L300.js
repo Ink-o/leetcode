@@ -33,6 +33,7 @@ var lengthOfLIS = function (nums) {
   let len = 1
   // 当前序列数组
   let d = Array(nums.length + 1).fill(0)
+  // 从第一个元素开始算，1 相当于索引了
   d[1] = nums[0]
   for (let i = 1; i < nums.length; i++) {
     if (nums[i] > d[len]) {

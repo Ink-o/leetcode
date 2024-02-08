@@ -19,7 +19,7 @@ var findAnagrams = function (s, p) {
   let valid = 0
   const res = []
 
-  while (right <= s.length) {
+  while (right < s.length) {
     const cur = s[right]
     right++
 
