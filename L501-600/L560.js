@@ -5,6 +5,7 @@
  * @return {number}
  */
 var subarraySum = function (nums, k) {
+  // 这个 mp 主要是记录和为 k 的组合数有 v 种
   const mp = new Map()
   // 记录一个前缀和为 0 的次数，兼容刚好 pre = k 的情况
   mp.set(0, 1)
@@ -12,7 +13,7 @@ var subarraySum = function (nums, k) {
   for (const x of nums) {
     // 前缀和累加
     pre += x
-    // 当有前缀和刚好与 k 相等的情况下，直接计算值
+    // 当有前缀和刚好与 k 相等的情况下，直接进行值累加，因为前面已经把值计算过了
     if (mp.has(pre - k)) {
       count += mp.get(pre - k)
     }

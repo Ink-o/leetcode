@@ -14,50 +14,51 @@ var setZeroes = function (matrix) {
   // 下面有解释原因
   // 判断每行的第 0 列是否为 0
   for (let i = 0; i < m; i++) {
-    flagCol0 = true
-  }
-}
-
-// 判断第 0 行的每列是否存在 0
-for (let j = 0; j < n; j++) {
-  if (matrix[0][j] === 0) {
-    flagRow0 = true
-  }
-}
-
-// 从第一行开始判断每行的每列是否存在 0 的情况
-for (let i = 1; i < m; i++) {
-  for (let j = 1; j < n; j++) {
-    if (matrix[i][j] === 0) {
-      // 将第 i 行的第 0 列 和 第 0 行的第 j 列设置为 0（打标记）
-      matrix[i][0] = matrix[0][j] = 0
+    if (matrix[i][0] === 0) {
+      flagCol0 = true
     }
   }
-}
 
-// 针对上面的标记，进行赋值为 0 的操作
-for (let i = 1; i < m; i++) {
-  for (let j = 1; j < n; j++) {
-    // 碰到上面处理的标记，则将当前的格子变为 0
-    // 如果第 i 行的第 0 列 或者 第 0 行的第 j 列为 0 的话，则当前的行/列设置为0（上面已经打了标记）
-    if (matrix[i][0] === 0 || matrix[0][j] === 0) {
-      matrix[i][j] = 0
+  // 判断第 0 行的每列是否存在 0
+  for (let i = 0; i < n; i++) {
+    if (matrix[0][i] === 0) {
+      flagRow0 = true
     }
   }
-}
 
-// 针对第 0 行/列存在 0 的情况，对整行/列进行赋值 0
-if (flagCol0) {
-  for (let i = 0; i < m; i++) {
-    matrix[i][0] = 0
+  // 从第一行开始判断每行的每列是否存在 0 的情况
+  for (let i = 1; i < m; i++) {
+    for (let j = 1; j < n; j++) {
+      if (matrix[i][j] === 0) {
+        // 将第 i 行的第 0 列 和 第 0 行的第 j 列设置为 0（打标记）
+        matrix[i][0] = matrix[0][j] = 0
+      }
+    }
   }
-}
 
-if (flagRow0) {
-  for (let j = 0; j < n; i++) {
-    matrix[0][j] = 0
+  // 针对上面的标记，进行赋值为 0 的操作
+  for (let i = 1; i < m; i++) {
+    for (let j = 1; j < n; j++) {
+      // 碰到上面处理的标记，则将当前的格子变为 0
+      // 如果第 i 行的第 0 列 或者 第 0 行的第 j 列为 0 的话，则当前的行/列设置为0（上面已经打了标记）
+      if (matrix[i][0] === 0 || matrix[0][j] === 0) {
+        matrix[i][j] = 0
+      }
+    }
   }
-}
+
+  // 针对第 0 行/列存在 0 的情况，对整行/列进行赋值 0
+  if (flagCol0) {
+    for (let i = 0; i < m; i++) {
+      matrix[i][0] = 0
+    }
+  }
+
+  if (flagRow0) {
+    for (let j = 0; j < n; j++) {
+      matrix[0][j] = 0
+    }
+  }
 };
 
 /**
