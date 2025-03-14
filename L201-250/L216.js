@@ -3,7 +3,7 @@
  * @param {number} n
  * @return {number[][]}
  */
-var combinationSum3 = function (k, n) {
+function combinationSum3(k, n) {
   const cur = []
   const res = []
   function process(start, pre) {
@@ -22,5 +22,5 @@ var combinationSum3 = function (k, n) {
   }
   process(1, 0)
   return res
-};
-console.log(combinationSum3(3, 9));
+}
+console.log(combinationSum3(3, 9))

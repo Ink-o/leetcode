@@ -3,11 +3,12 @@
  * @param {number[]} nums
  * @return {number[]}
  */
-var statisticalResult = function (nums) {
-  let dp = []
+function statisticalResult(nums) {
+  const dp = []
   // l：数组 0 索引左边初始数
   // r：数组 尾部 索引右边初始数
-  let l = 1, r = 1
+  let l = 1
+  let r = 1
   // 算出除了 i 左边的乘积
   for (let i = 0; i < nums.length; i++) {
     dp[i] = l
@@ -24,5 +25,5 @@ var statisticalResult = function (nums) {
   }
 
   return dp
-};
+}
 statisticalResult([1, 2, 3, 4])

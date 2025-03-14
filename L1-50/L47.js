@@ -1,8 +1,8 @@
-var permuteUnique = function (nums) {
+function permuteUnique(nums) {
   const cur = []
   const res = []
   const len = nums.length
-  // 一开始得先进行排序，这样才能使用相邻元素比较是否出现相同元素 
+  // 一开始得先进行排序，这样才能使用相邻元素比较是否出现相同元素
   nums.sort((a, b) => a - b)
   function process(used) {
     if (cur.length === nums.length) {
@@ -29,4 +29,4 @@ var permuteUnique = function (nums) {
   process([])
   return res
 }
-console.log(permuteUnique([3, 3, 0, 3]));
+console.log(permuteUnique([3, 3, 0, 3]))

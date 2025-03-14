@@ -2,7 +2,7 @@
  * @param {number[]} nums
  * @return {number[][]}
  */
-var subsetsWithDup = function (nums) {
+function subsetsWithDup(nums) {
   const res = []
   const cur = []
   // 这里得先排序，从小到大进行排列，保证有序
@@ -21,4 +21,4 @@ var subsetsWithDup = function (nums) {
   }
   process(0)
   return res
-};
+}

@@ -2,7 +2,7 @@
  * @param {string} s
  * @return {string[]}
  */
-var restoreIpAddresses = function (s) {
+function restoreIpAddresses(s) {
   const res = []
   const cur = []
   function progress(startIndex) {
@@ -26,12 +26,14 @@ var restoreIpAddresses = function (s) {
   }
   function isIp(s) {
     // 以0开头，并且长度大于1
-    if (s[0] == 0 && s.length > 1) return false
+    if (s[0] === 0 && s.length > 1)
+      return false
     // 数值大于255
-    if (Number(s) > 255) return false
+    if (Number(s) > 255)
+      return false
     return true
   }
   progress(0)
   return res
-};
-console.log(restoreIpAddresses('25525511135'));
+}
+console.log(restoreIpAddresses('25525511135'))

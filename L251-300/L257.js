@@ -10,22 +10,22 @@
  * @param {TreeNode} root
  * @return {string[]}
  */
-var binaryTreePaths = function (root) {
-  let ret = [];
-  process(root, '');
-  return ret;
+function binaryTreePaths(root) {
+  const ret = []
+  process(root, '')
+  return ret
   function process(root, prefix) {
     if (!root) {
-      return;
+      return
     }
     // 如果当前节点为叶子节点，则往结果数组中添加元素
     if (!root.left && !root.right) {
-      ret.push(`${prefix}${root.val}`);
+      ret.push(`${prefix}${root.val}`)
     }
     // 更新前缀
-    prefix += `${root.val}->`;
+    prefix += `${root.val}->`
     // 继续深度优先遍历
-    process(root.left, prefix);
-    process(root.right, prefix);
+    process(root.left, prefix)
+    process(root.right, prefix)
   }
-};
+}

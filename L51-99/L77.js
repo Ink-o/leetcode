@@ -3,8 +3,8 @@
  * @param {number} k
  * @return {number[][]}
  */
-var combine = function (n, k) {
-  let res = []
+function combine(n, k) {
+  const res = []
   function process(start, cur = []) {
     if (cur.length >= k) {
       res.push([...cur])
@@ -23,5 +23,5 @@ var combine = function (n, k) {
   }
   process(1, [])
   return res
-};
-console.log(combine(4, 2));
+}
+console.log(combine(4, 2))

@@ -36,37 +36,37 @@
 // }
 // console.log(uniquePathsWithObstacles([[0,0,0],[0,1,0],[0,0,0]]));
 
-
 /**
  * @param {number[][]} obstacleGrid
  * @return {number}
  */
-var uniquePathsWithObstacles = function(obstacleGrid) {
-    // 初始化长度为目标数组宽度的数组，并且初始化为-
-    // 一般压缩dp成一维数组，都是根据内层循环的长度值来进行初始化的，这里的内层循环长度为n，所以数组长度初始化为n
+function uniquePathsWithObstacles(obstacleGrid) {
+  // 初始化长度为目标数组宽度的数组，并且初始化为-
+  // 一般压缩dp成一维数组，都是根据内层循环的长度值来进行初始化的，这里的内层循环长度为n，所以数组长度初始化为n
 
-    // 这里dp的意思是走到第 i 列所有的步数方法
-    let dp = new Array(obstacleGrid[0].length).fill(0);
+  // 这里dp的意思是走到第 i 列所有的步数方法
+  const dp = Array.from({ length: obstacleGrid[0].length }).fill(0)
 
-    // 初始化第一行数值，遇到阻碍的后面都初始化为0
-    for (let i = 0; i < dp.length && obstacleGrid[0][i] !== 1; i++) {
-        dp[i] = 1;
+  // 初始化第一行数值，遇到阻碍的后面都初始化为0
+  for (let i = 0; i < dp.length && obstacleGrid[0][i] !== 1; i++) {
+    dp[i] = 1
+  }
+
+  // 因为上面已经初始化完第一行了，所以这个直接从第二行开始
+  for (let i = 1; i < obstacleGrid.length; i++) {
+    // 从第0列开始计算，如果有障碍的话，直接跳过
+    for (let j = 0; j < dp.length; j++) {
+      if (obstacleGrid[i][j] === 1) {
+        dp[j] = 0
+        continue
+      }
+      if (j === 0)
+        continue
+      // 递推公式变成了 dp[j] += dp[j - 1];
+      // 原因是dp[j]没变更前就是当前遍历位置的正上方的旧值，然后dp[j - 1]就是其左边的值了
+      dp[j] = dp[j] + dp[j - 1]
     }
-
-    // 因为上面已经初始化完第一行了，所以这个直接从第二行开始
-    for (let i = 1; i < obstacleGrid.length; i++) {
-        // 从第0列开始计算，如果有障碍的话，直接跳过
-        for (let j = 0; j < dp.length; j++) {
-            if (obstacleGrid[i][j] === 1) {
-                dp[j] = 0;
-                continue;
-            }
-            if (j === 0) continue;
-            // 递推公式变成了 dp[j] += dp[j - 1];
-            // 原因是dp[j]没变更前就是当前遍历位置的正上方的旧值，然后dp[j - 1]就是其左边的值了
-            dp[j] = dp[j] + dp[j - 1];
-        }
-    }
-    return dp[dp.length - 1];
+  }
+  return dp[dp.length - 1]
 }
-console.log(uniquePathsWithObstacles([[0,0,0],[0,1,0],[0,0,0]]));
+console.log(uniquePathsWithObstacles([[0, 0, 0], [0, 1, 0], [0, 0, 0]]))

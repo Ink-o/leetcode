@@ -1,16 +1,16 @@
 /**
- * 
+ *
  * @param {string} s1
  * @param {string} s2
  * @return {boolean}
  */
-var checkInclusion = function (s1, s2) {
+function checkInclusion(s1, s2) {
   const window = new Map()
   const need = new Map()
 
   // 记录每次字符出现的次数
   for (let i = 0; i < s1.length; i++) {
-    const element = s1[i];
+    const element = s1[i]
     need.set(element, (need.get(element) || 0) + 1)
   }
 
@@ -45,5 +45,5 @@ var checkInclusion = function (s1, s2) {
     }
   }
   return false
-};
-console.log(checkInclusion('ab', 'eidboaoo'));
+}
+console.log(checkInclusion('ab', 'eidboaoo'))

@@ -4,12 +4,13 @@
  * @param {number} k
  * @return {number}
  */
-var subarraySum = function (nums, k) {
+function subarraySum(nums, k) {
   // 这个 mp 主要是记录和为 k 的组合数有 v 种
   const mp = new Map()
   // 记录一个前缀和为 0 的次数，兼容刚好 pre = k 的情况
   mp.set(0, 1)
-  let count = 0, pre = 0
+  let count = 0
+  let pre = 0
   for (const x of nums) {
     // 前缀和累加
     pre += x
@@ -23,4 +24,4 @@ var subarraySum = function (nums, k) {
   }
 
   return count
-};
+}

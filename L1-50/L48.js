@@ -3,8 +3,8 @@
  * @param {number[][]} matrix
  * @return {void} Do not return anything, modify matrix in-place instead.
  */
-var rotate = function (matrix) {
-  let n = matrix.length
+function rotate(matrix) {
+  const n = matrix.length
   // 外层循环，例如一个 5 x 5 的矩阵需要处理 3 次
   // 分别是 5、3、1（每次会处理 2 层）
   // 假设矩形为 4 x 4，那么旋转点为左上角 4 个方块
@@ -12,7 +12,7 @@ var rotate = function (matrix) {
     // 内层循环，处理每层的元素，为了处理奇数的情况，这里边界设置为 (n + 1) / 2
     for (let j = 0; j < Math.floor((n + 1) / 2); j++) {
       // 暂存 A 至 tmp
-      let tmp = matrix[i][j]
+      const tmp = matrix[i][j]
       // 元素旋转操作 A <- D <- C <- B <- tmp
       // 推导公式：matrix[i][j]←matrix[n−1−j][i]←matrix[n−1−i][n−1−j]←matrix[j][n−1−i]←tmp
 
@@ -28,4 +28,4 @@ var rotate = function (matrix) {
       matrix[j][n - 1 - i] = tmp
     }
   }
-};
+}

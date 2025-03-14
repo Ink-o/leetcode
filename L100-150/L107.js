@@ -11,22 +11,22 @@
  * @return {number[][]}
  * 思路：层次遍历，然后unshift进结果数组
  */
-var levelOrderBottom = function(root) {
-    if (!root) {
-        return [];
+function levelOrderBottom(root) {
+  if (!root) {
+    return []
+  }
+  const queue = [root]
+  const ret = []
+  while (queue.length) {
+    const curLevel = []
+    let len = queue.length
+    while (len--) {
+      const node = queue.shift()
+      curLevel.push(node.val)
+      node.left && queue.push(node.left)
+      node.right && queue.push(node.right)
     }
-    let queue = [root];
-    let ret = [];
-    while (queue.length) {
-        let curLevel = [];
-        let len = queue.length;
-        while (len--) {
-            const node = queue.shift();
-            curLevel.push(node.val);
-            node.left && queue.push(node.left);
-            node.right && queue.push(node.right);
-        }
-        ret.unshift(curLevel);
-    }
-    return ret;
-};
+    ret.unshift(curLevel)
+  }
+  return ret
+}

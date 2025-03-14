@@ -4,12 +4,13 @@
  * @param {string} magazine
  * @return {boolean}
  */
-var canConstruct = function (ransomNote, magazine) {
-  if (ransomNote.length !== magazine.length) return false
+function canConstruct(ransomNote, magazine) {
+  if (ransomNote.length !== magazine.length)
+    return false
   const magazineMap = new Map()
   // 记录 magazine 上的字符出现次数
   for (let i = 0; i < magazine.length; i++) {
-    magazineMap.set(magazine[i], (magazineMap.get(magazine[i]) || 0 ) + 1)
+    magazineMap.set(magazine[i], (magazineMap.get(magazine[i]) || 0) + 1)
   }
 
   // 对 ransomNote 上的字符次数进行对消，最后判断次数是否小于0
@@ -21,5 +22,5 @@ var canConstruct = function (ransomNote, magazine) {
     }
   }
   return true
-};
-console.log(canConstruct("aa", "aab"));
+}
+console.log(canConstruct('aa', 'aab'))

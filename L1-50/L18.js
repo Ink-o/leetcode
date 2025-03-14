@@ -3,7 +3,7 @@
  * @param {number} target
  * @return {number[][]}
  */
-var fourSum = function (nums, target) {
+function fourSum(nums, target) {
   const res = []
   // 从小到大排序
   nums.sort((a, b) => a - b)
@@ -45,5 +45,5 @@ var fourSum = function (nums, target) {
     }
   }
   return res
-};
-fourSum([2, 2, 2, 2, 2], 8);
+}
+fourSum([2, 2, 2, 2, 2], 8)

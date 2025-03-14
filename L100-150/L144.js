@@ -12,12 +12,13 @@
  * @return {number[]}
  */
 var preorderTraversal = function (root, arr = []) {
-  if (!root) return arr
+  if (!root)
+    return arr
   arr.push(root.val)
   preorderTraversal(root.left, arr)
   preorderTraversal(root.right, arr)
   return arr
-};
+}
 
 /**
  * 迭代前序遍历
@@ -30,18 +31,18 @@ var preorderTraversal = function (root, arr = []) {
  */
 var preorderTraversal = function (root) {
   if (!root) {
-    return [];
+    return []
   }
-  let ret = [];
+  const ret = []
   // 栈先加入根节点
-  let stack = [root];
+  const stack = [root]
   while (stack.length) {
-    let ele = stack.pop();
-    ret.push(ele);
+    const ele = stack.pop()
+    ret.push(ele)
     // 先进栈右节点
-    ele.right && stack.push(ele.right);
+    ele.right && stack.push(ele.right)
     // 再进栈左节点
-    ele.left && stack.push(ele.left);
+    ele.left && stack.push(ele.left)
   }
-  return ret;
-};
+  return ret
+}

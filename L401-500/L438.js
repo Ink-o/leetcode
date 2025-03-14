@@ -10,7 +10,7 @@ var findAnagrams = function (s, p) {
 
   // 记录 p 的子串出现次数
   for (let i = 0; i < p.length; i++) {
-    const element = p[i];
+    const element = p[i]
     need.set(element, (need.get(element) || 0) + 1)
   }
 
@@ -34,7 +34,7 @@ var findAnagrams = function (s, p) {
     }
 
     // 判断指针长度是否越界，越界的话，滑动窗口需要移动
-    while (right - left > p.length) {
+    if (right - left > p.length) {
       const l = s[left]
       left++
       // 维护字典
@@ -54,4 +54,49 @@ var findAnagrams = function (s, p) {
     }
   }
   return res
-};
+}
+
+/**
+ * 简单一点，但是时间复杂度这里会变成 On*m
+ * @param {string} s
+ * @param {string} p
+ * @return {number[]}
+ */
+var findAnagrams = function (s, p) {
+  const pMap = new Map()
+  const res = []
+  for (let i = 0; i < p.length; i++) {
+    const element = p[i]
+    pMap.set(element, (pMap.get(element) || 0) + 1)
+  }
+
+  let slow = 0
+  const windowMap = new Map()
+  for (let i = 0; i < s.length; i++) {
+    const cur = s[i]
+    windowMap.set(cur, (windowMap.get(cur) || 0) + 1)
+
+    // 长度满足
+    if (i - slow + 1 === p.length) {
+      // 全匹配
+      let count = 0
+      // 遍历当前收集到的 map，一一与windowMap对比，看多少项数相等（这里需要多一层循环）
+      for (const [k, v] of windowMap) {
+        if (v === pMap.get(k)) {
+          count++
+        }
+      }
+
+      // 如果项全部相等，则直接推入
+      if (count === pMap.size) {
+        res.push(slow)
+      }
+
+      // 次数减少
+      windowMap.set(s[slow], windowMap.get(s[slow]) - 1)
+      slow++
+    }
+  }
+
+  return res
+}

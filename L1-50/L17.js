@@ -3,25 +3,26 @@
  * @param {string} digits
  * @return {string[]}
  */
-var letterCombinations = function (digits) {
+function letterCombinations(digits) {
   // 初始化map
   const numMap = {
-    '2': 'abc',
-    '3': 'def',
-    '4': 'ghi',
-    '5': 'jkl',
-    '6': 'mno',
-    '7': 'pqrs',
-    '8': 'tuv',
-    '9': 'wxyz',
+    2: 'abc',
+    3: 'def',
+    4: 'ghi',
+    5: 'jkl',
+    6: 'mno',
+    7: 'pqrs',
+    8: 'tuv',
+    9: 'wxyz',
   }
   const len = digits.length
   const res = []
   const cur = []
-  if (!len) return res
+  if (!len)
+    return res
 
   // 获取传入进来的数字对应的字母数组
-  let strArr = []
+  const strArr = []
   for (let i = 0; i < digits.length; i++) {
     strArr.push(numMap[digits[i]].split(''))
   }
@@ -45,5 +46,5 @@ var letterCombinations = function (digits) {
   }
   process(0)
   return res
-};
-console.log(letterCombinations('23'));
+}
+console.log(letterCombinations('23'))

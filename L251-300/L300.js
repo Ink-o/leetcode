@@ -5,21 +5,21 @@
  */
 var lengthOfLIS = function (nums) {
   // dp[i] 表示 i 之前的最长递增子序列长度，因为最短递增子序列都为1，所以全部初始化为1
-  let dp = new Array(nums.length).fill(1);
-  let result = 1;
+  const dp = Array.from({ length: nums.length }).fill(1)
+  let result = 1
 
   for (let i = 1; i < nums.length; i++) {
     for (let j = 0; j < i; j++) {
       // 对比值比当前值大的时候就可以进行值更新了
       if (nums[i] > nums[j]) {
         // 更新 最长递增子序列 长度
-        dp[i] = Math.max(dp[i], dp[j] + 1);
+        dp[i] = Math.max(dp[i], dp[j] + 1)
       }
     }
     // 更新最终结果最大长度
-    result = Math.max(result, dp[i]);
+    result = Math.max(result, dp[i])
   }
-  return result;
+  return result
 }
 
 /**
@@ -32,25 +32,29 @@ var lengthOfLIS = function (nums) {
   // 子序列上升高度
   let len = 1
   // 当前序列数组
-  let d = Array(nums.length + 1).fill(0)
+  const d = Array.from({ length: nums.length + 1 }).fill(0)
   // 从第一个元素开始算，1 相当于索引了
   d[1] = nums[0]
   for (let i = 1; i < nums.length; i++) {
     if (nums[i] > d[len]) {
       d[++len] = nums[i]
-    } else {
+    }
+    else {
       // 这里是针对 d 来进行的二分查找，得注意左右边界
       // l 起点为 1，r 结束点为 len
       // 如果找不到说明所有的数都比 nums[i] 大，此时要更新 d[1]，所以这里将 pos 设置为 0
-      let l = 1, r = len, pos = 0
+      let l = 1
+      let r = len
+      let pos = 0
       // 找到最后一个比 nums[i] 小于等于的数值，然后替换掉它下一个的值，也就是第一个比它大的值
       while (l <= r) {
-        let mid = Math.floor((l + r) / 2)
+        const mid = Math.floor((l + r) / 2)
         // 这里是只要小于都进行覆盖值
         if (d[mid] < nums[i]) {
           pos = mid
           l = mid + 1
-        } else {
+        }
+        else {
           r = mid - 1
         }
       }

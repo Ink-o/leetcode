@@ -10,8 +10,8 @@
  * @param {number} n
  * @return {ListNode}
  */
-var removeNthFromEnd = function (head, n) {
-  let dumpHead = new ListNode('', head)
+function removeNthFromEnd(head, n) {
+  const dumpHead = new ListNode('', head)
   // 这里先以 dumpHead 开头，下面实际的行走n步就是走到第n格
   let fast = slow = dumpHead
 

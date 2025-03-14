@@ -2,7 +2,7 @@
  * @param {number[]} nums
  * @return {number[]}
  */
- var smallerNumbersThanCurrent = function(nums) {
+function smallerNumbersThanCurrent(nums) {
   const map = new Map()
   const arr = [...nums]
   const res = []
@@ -20,4 +20,4 @@
     res[i] = map.get(nums[i])
   }
   return res
-};
+}

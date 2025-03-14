@@ -3,12 +3,13 @@
  * @param {number} k
  * @return {number[]}
  */
-var topKFrequent = function (nums, k) {
+function topKFrequent(nums, k) {
   class Heap {
     constructor(compareFn) {
       this.compareFn = compareFn
       this.queue = []
     }
+
     // 添加
     push(item) {
       // 推入元素
@@ -27,6 +28,7 @@ var topKFrequent = function (nums, k) {
         parent = Math.floor((index - 1) / 2)
       }
     }
+
     // 获取堆顶元素并移除
     pop() {
       // 堆顶元素
@@ -52,14 +54,18 @@ var topKFrequent = function (nums, k) {
       }
       return out
     }
+
     size() {
       return this.queue.length
     }
+
     // 使用传入的 compareFn 比较两个位置的元素
     compare(index1, index2) {
       // 处理下标越界问题
-      if (this.queue[index1] === undefined) return 1
-      if (this.queue[index2] === undefined) return -1
+      if (this.queue[index1] === undefined)
+        return 1
+      if (this.queue[index2] === undefined)
+        return -1
       return this.compareFn(this.queue[index1], this.queue[index2])
     }
   }
@@ -85,5 +91,5 @@ var topKFrequent = function (nums, k) {
     res[i] = heap.pop()[0]
   }
   return res
-};
-console.log(topKFrequent([4, 1, -1, 2, -1, 2, 3], 2));
+}
+console.log(topKFrequent([4, 1, -1, 2, -1, 2, 3], 2))

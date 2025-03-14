@@ -11,8 +11,9 @@
  * @param {number[]} inorder
  * @return {TreeNode}
  */
-var buildTree = function (preorder, inorder) {
-  if (!preorder.length) return null
+function buildTree(preorder, inorder) {
+  if (!preorder.length)
+    return null
   // 找到根节点
   const rootVal = preorder.shift()
   // 找到根节点在中序遍历结果中的下标
@@ -24,4 +25,4 @@ var buildTree = function (preorder, inorder) {
   // 构建右子树，分别是取 先序遍历的 后 len - rootValIndex 位（因为头部已经去掉了，所以和中序遍历的 len - rootValIndex - 1 位的长度是相等的）
   node.right = buildTree(preorder.slice(rootValIndex), inorder.slice(rootValIndex + 1))
   return node
-};
+}

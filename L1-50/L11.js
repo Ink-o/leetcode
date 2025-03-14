@@ -4,7 +4,7 @@
  * @param {number[]} height
  * @return {number}
  */
-var maxArea = function (height) {
+function maxArea(height) {
   let l = 0
   let r = height.length - 1
   let area = 0
@@ -16,9 +16,10 @@ var maxArea = function (height) {
     area = Math.max(Math.min(lHeight, rHeight) * (r - l), area)
     if (lHeight < rHeight) {
       l++
-    } else {
+    }
+    else {
       r--
     }
   }
   return area
-};
+}

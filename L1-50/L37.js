@@ -2,9 +2,9 @@
  * @param {character[][]} board
  * @return {void} Do not return anything, modify board in-place instead.
  */
-var solveSudoku = function (board) {
+function solveSudoku(board) {
   function isValid(row, col, val, board) {
-    let len = board.length
+    const len = board.length
     // 行不能重复
     for (let i = 0; i < len; i++) {
       if (board[row][i] === val) {
@@ -19,8 +19,8 @@ var solveSudoku = function (board) {
     }
 
     // 所在区域格子里不能重复
-    let startRow = Math.floor(row / 3) * 3 // 每个独立小9宫格的行起点
-    let startCol = Math.floor(col / 3) * 3 // 每个独立小9宫格的列起点
+    const startRow = Math.floor(row / 3) * 3 // 每个独立小9宫格的行起点
+    const startCol = Math.floor(col / 3) * 3 // 每个独立小9宫格的列起点
 
     // 这里的 i、j 起点是 startRow、startCol
     // 终点是 startRow + startCol + 3
@@ -43,7 +43,8 @@ var solveSudoku = function (board) {
       // 列遍历
       for (let j = 0; j < board[0].length; j++) {
         // 非空占位不进行处理
-        if (board[i][j] !== '.') continue
+        if (board[i][j] !== '.')
+          continue
         // 格子里只能存放1-9的数字，所以这里数字的范围是 1 - 9
         for (let val = 1; val <= 9; val++) {
           // 这里对即将要填入的数字进行校验，如果合法则进行填充
@@ -65,4 +66,4 @@ var solveSudoku = function (board) {
   }
   backTracking(board)
   return board
-};
+}

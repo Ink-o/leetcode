@@ -4,7 +4,7 @@
  * @param {number[]} s 食物
  * @return {number}
  */
-var findContentChildren = function (g, s) {
+function findContentChildren(g, s) {
   // 胃口与食物从小到大排序
   g.sort((a, b) => a - b)
   s.sort((a, b) => a - b)
@@ -24,7 +24,7 @@ var findContentChildren = function (g, s) {
     }
   }
   return count
-};
+}
 
 /**
  * 思路：小饼干喂饱胃口小的。
@@ -32,7 +32,7 @@ var findContentChildren = function (g, s) {
  * @param {number[]} s 食物
  * @return {number}
  */
-var findContentChildren2 = function (g, s) {
+function findContentChildren2(g, s) {
   g.sort((a, b) => a - b)
   s.sort((a, b) => a - b)
 

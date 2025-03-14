@@ -43,7 +43,7 @@
  * 这里是以列来进行计算面积的。所以只需要记录左右侧的最高高度，获取其中的最小高度，然后减去当前高度，就是装水面积了
  * @param {number[]} height
  * @return {number}
- * 
+ *
  */
 // var trap = function (height) {
 //   let maxLeft = [];
@@ -76,7 +76,6 @@
 //   return sum;
 // }
 // console.log(trap([0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1]));
-
 
 /**
  * 单调栈解法，按行计算面积
@@ -139,30 +138,30 @@
  * 情况三：准备入栈元素大于栈头元素，形成凹槽，此时可以装水了
  * 单调栈解法（简约版，对情况一和二不再进行单独处理，直接都进行push处理）
  */
-var trap = function (height) {
-  const len = height.length;
-  const st = [];
-  st.unshift(0);
-  let sum = 0;
+function trap(height) {
+  const len = height.length
+  const st = []
+  st.unshift(0)
+  let sum = 0
 
   for (let i = 1; i < len; i++) {
     // 处理当前元素比栈顶元素要大的情况，也就是有凹槽的时候
     while (st.length > 0 && height[i] > height[st[0]]) {
       // 出栈，栈顶元素作为中间点
-      const mid = st.shift();
+      const mid = st.shift()
 
       if (st.length > 0) {
         // 求宽度。此时 栈顶元素st[0] 为左边界，i 为右边界
-        const w = i - st[0] - 1;
+        const w = i - st[0] - 1
         // 求出左右边界的最小高度并且减去当前中间的高度。得出来的就是水槽高度
-        const h = Math.min(height[i], height[st[0]]) - height[mid];
-        sum += w * h;
+        const h = Math.min(height[i], height[st[0]]) - height[mid]
+        sum += w * h
       }
     }
     // 将第1、2、3的公共操作合并在一起了
-    st.unshift(i);
+    st.unshift(i)
   }
 
-  return sum;
+  return sum
 }
 console.log(trap([5, 5, 1, 3]))

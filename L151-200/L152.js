@@ -2,7 +2,7 @@
  * @param {number[]} nums
  * @return {number}
  */
-var maxProduct = function (nums) {
+function maxProduct(nums) {
   // 最大值记录
   let max = nums[0]
 
@@ -13,9 +13,9 @@ var maxProduct = function (nums) {
   for (let i = 1; i < nums.length; i++) {
     const cur = nums[i]
     // 当前取值可以是上一个的最小值 * 当前值（都是负数）
-    let val1 = minF * cur
+    const val1 = minF * cur
     // 当前取值可以是上一个的最大值 * 当前值（都是正数）
-    let val2 = maxF * cur
+    const val2 = maxF * cur
 
     // 更新处理当前索引的最大值和最小值，或者可以从当前进行取值（从当前索引开始）
     minF = Math.min(val1, val2, cur)
@@ -25,4 +25,4 @@ var maxProduct = function (nums) {
     max = Math.max(max, maxF)
   }
   return max
-};
+}

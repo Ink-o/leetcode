@@ -2,8 +2,9 @@
  * @param {Node|null} root
  * @return {number}
  */
-var maxDepth = function (root) {
-  if (!root) return 0
+function maxDepth(root) {
+  if (!root)
+    return 0
   let resNum = 0
   // 计算出n叉树中，深度最深的子节点层数
   for (let i = 0; i < root.children.length; i++) {
@@ -11,4 +12,4 @@ var maxDepth = function (root) {
   }
   // 最后再加上根节点深度1
   return 1 + resNum
-};
+}

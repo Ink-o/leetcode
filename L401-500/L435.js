@@ -3,35 +3,35 @@
  * @param {number[][]} intervals
  * @return {number}
  */
-var eraseOverlapIntervals = function (intervals) {
+function eraseOverlapIntervals(intervals) {
   // 右边界从小到大排序
   intervals.sort((a, b) => {
-    return a[1] - b[1];
+    return a[1] - b[1]
   })
   // count 是无重叠的区间数量
   // 这里的count初始化为1，因为一开始就收录了i = 0，并且此时的end还未初始化
-  let count = 1;
+  let count = 1
   // 第一个末尾
-  let end = intervals[0][1];
+  let end = intervals[0][1]
 
   for (let i = 1; i < intervals.length; i++) {
-    let interval = intervals[i];
+    const interval = intervals[i]
     // 当前的最小值大于或等于重叠区间的最大值的时候，这时候就不需要删除，这时候继续更新end区间
     if (interval[0] >= end) {
-      end = interval[1];
-      count += 1;
+      end = interval[1]
+      count += 1
     }
   }
   // 最后结果就是总长度-无需被删除的长度
-  return intervals.length - count;
-};
+  return intervals.length - count
+}
 
 /**
  * 贪心解法，记录需要被删除
  * @param {number[][]} intervals
  * @return {number}
  */
-var eraseOverlapIntervals2 = function (intervals) {
+function eraseOverlapIntervals2(intervals) {
   // 右边界从小到大排序
   intervals.sort((a, b) => {
     if (a[1] !== b[1]) {
@@ -52,4 +52,4 @@ var eraseOverlapIntervals2 = function (intervals) {
     maxDistance = intervals[i][1]
   }
   return res
-};
+}

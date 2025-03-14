@@ -7,7 +7,7 @@
 var groupAnagrams = function (strs) {
   const obj = {}
   for (const list of strs) {
-    const arr = new Array(26).fill(0)
+    const arr = Array.from({ length: 26 }).fill(0)
     for (let i = 0; i < list.length; i++) {
       arr[list.charCodeAt(i) - 'a'.charCodeAt()] += 1
     }
@@ -31,9 +31,10 @@ var groupAnagrams = function (strs) {
     }
     if (map.has(sum)) {
       map.get(sum).push(curStr)
-    } else {
+    }
+    else {
       map.set(sum, [curStr])
     }
   }
   return [...map.values()]
-};
+}

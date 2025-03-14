@@ -41,28 +41,29 @@
 
 // 进出栈解法
 // 时间复杂度为 On+m，空间复杂度为On+m
-var backspaceCompare = function (s, t) {
-  let s1 = []
+function backspaceCompare(s, t) {
+  const s1 = []
   for (let i = 0; i < s.length; i++) {
-    const element = s[i];
+    const element = s[i]
     if (element !== '#') {
       s1.push(element)
-    } else {
+    }
+    else {
       s1.pop()
     }
   }
-  let s2 = []
+  const s2 = []
   for (let i = 0; i < t.length; i++) {
-    const element = t[i];
+    const element = t[i]
     if (element !== '#') {
       s2.push(element)
-    } else {
+    }
+    else {
       s2.pop()
     }
   }
   return s1.join('') === s2.join('')
-};
-
+}
 
 /**
  * 官解，双指针解法，时间为 On+m、空间复杂度为O1
@@ -70,10 +71,12 @@ var backspaceCompare = function (s, t) {
  * @param {string} t
  * @return {boolean}
  */
-var backspaceCompare2 = function (s, t) {
-  let i = s.length - 1, j = t.length - 1
+function backspaceCompare2(s, t) {
+  let i = s.length - 1
+  let j = t.length - 1
   // s、t还有几个未消除的#数量
-  let skipS = 0, skipT = 0
+  let skipS = 0
+  let skipT = 0
 
   while (i >= 0 || j >= 0) {
     // 找到s的第一个有效字符（即经过#消除后）
@@ -81,10 +84,12 @@ var backspaceCompare2 = function (s, t) {
       if (s.charAt(i) === '#') {
         skipS++
         i--
-      } else if (skipS > 0) {
+      }
+      else if (skipS > 0) {
         skipS--
         i--
-      } else {
+      }
+      else {
         break
       }
     }
@@ -93,10 +98,12 @@ var backspaceCompare2 = function (s, t) {
       if (t.charAt(j) === '#') {
         skipT++
         j--
-      } else if (skipT > 0) {
+      }
+      else if (skipT > 0) {
         skipT--
         j--
-      } else {
+      }
+      else {
         break
       }
     }
@@ -106,7 +113,8 @@ var backspaceCompare2 = function (s, t) {
       if (s.charAt(i) !== t.charAt(j)) {
         return false
       }
-    } else {
+    }
+    else {
       // i、j有任一一个数大于0，则return false，因为有一边走完了，另一边没走完
       if (i >= 0 || j >= 0) {
         return false
@@ -116,4 +124,4 @@ var backspaceCompare2 = function (s, t) {
     j--
   }
   return true
-};
+}

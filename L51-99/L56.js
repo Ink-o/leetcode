@@ -3,7 +3,7 @@
  * @param {number[][]} intervals
  * @return {number[][]}
  */
-var merge = function (intervals) {
+function merge(intervals) {
   // 起点从小到大排序
   intervals.sort((a, b) => a[0] - b[0])
   const res = []
@@ -24,4 +24,4 @@ var merge = function (intervals) {
   // 收集最后一个区间
   res.push([start, end])
   return res
-};
+}

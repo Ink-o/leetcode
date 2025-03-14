@@ -2,7 +2,7 @@
  * @param {number[][]} envelopes
  * @return {number}
  */
-var maxEnvelopes = function (envelopes) {
+function maxEnvelopes(envelopes) {
   if (envelopes.length === 0) {
     return 0
   }
@@ -25,23 +25,25 @@ var maxEnvelopes = function (envelopes) {
     // 高度适合，直接叠加
     if (num > f[f.length - 1]) {
       f.push(num)
-    } else {
+    }
+    else {
       // 否则，直接找到f中第一个比 num 大的索引，直接替换原本的值
       const index = binarySearch(f, num)
       f[index] = num
     }
   }
   return f.length
-};
+}
 // 二分查找 f 中第一个比 target 大的索引
 function binarySearch(f, target) {
   let l = 0
   let r = f.length
   while (l < r) {
-    let mid = Math.floor((l + r) / 2)
+    const mid = Math.floor((l + r) / 2)
     if (f[mid] < target) {
       l = mid + 1
-    } else {
+    }
+    else {
       r = mid
     }
   }

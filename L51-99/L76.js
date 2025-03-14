@@ -58,18 +58,17 @@
 //   return len === Infinity ? '' : s.substr(start, len)
 // }
 
-
 /**
  * @param {string} s
  * @param {string} t
  * @return {string}
  */
-var minWindow = function (s, t) {
+function minWindow(s, t) {
   const need = new Map()
   const window = new Map()
 
   for (let i = 0; i < t.length; i++) {
-    const element = t[i];
+    const element = t[i]
     need.set(element, (need.get(element) || 0) + 1)
   }
 
@@ -105,5 +104,5 @@ var minWindow = function (s, t) {
     }
   }
   return len === Infinity ? '' : s.substr(start, len)
-};
-console.log(minWindow('cabwefgewcwaefgcf', 'cae'));
+}
+console.log(minWindow('cabwefgewcwaefgcf', 'cae'))

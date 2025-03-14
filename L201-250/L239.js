@@ -4,12 +4,13 @@
  * @param {number} k
  * @return {number[]}
  */
-var maxSlidingWindow = function (nums, k) {
+function maxSlidingWindow(nums, k) {
   // 单调递减队列，数值从大到小排列
   class MonoQueue {
     constructor() {
       this.queue = []
     }
+
     // 入队
     enqueue(value) {
       // 当前队尾元素
@@ -23,6 +24,7 @@ var maxSlidingWindow = function (nums, k) {
       // 最后插入新增的元素
       this.queue.push(value)
     }
+
     // 出队
     dequeue(value) {
       const front = this.front()
@@ -31,16 +33,18 @@ var maxSlidingWindow = function (nums, k) {
         this.queue.shift()
       }
     }
+
     // 返回队头元素
     front() {
       return this.queue[0]
     }
   }
-  let helperQueue = new MonoQueue()
+  const helperQueue = new MonoQueue()
   // i 为上间区间的指针，j当前区间的指针
   // 下面的每次循环 i都需要进行出队，j需要进队
-  let i = 0, j = 0
-  let resArr = []
+  let i = 0
+  let j = 0
+  const resArr = []
   // 先进3个数，形成单调递减队列
   while (j < k) {
     helperQueue.enqueue(nums[j++])
@@ -59,4 +63,4 @@ var maxSlidingWindow = function (nums, k) {
   }
   // console.log(helperQueue);
   return resArr
-};
+}

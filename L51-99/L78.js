@@ -2,7 +2,7 @@
  * @param {number[]} nums
  * @return {number[][]}
  */
-var subsets = function (nums) {
+function subsets(nums) {
   const cur = []
   const res = []
   function process(startIndex) {
@@ -18,5 +18,5 @@ var subsets = function (nums) {
   }
   process(0)
   return res
-};
-console.log(subsets([1, 2, 3]));
+}
+console.log(subsets([1, 2, 3]))

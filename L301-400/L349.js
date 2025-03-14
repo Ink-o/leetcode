@@ -4,7 +4,7 @@
  * @param {number[]} nums2
  * @return {number[]}
  */
-var intersection = function(nums1, nums2) {
+function intersection(nums1, nums2) {
   const nums1Set = new Set(nums1)
   const resSet = new Set()
   for (let i = 0; i < nums2.length; i++) {
@@ -14,4 +14,4 @@ var intersection = function(nums1, nums2) {
     }
   }
   return [...resSet]
-};
+}

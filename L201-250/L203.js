@@ -1,4 +1,3 @@
-
 // Definition for singly-linked list.
 function ListNode(val, next) {
   this.val = (val === undefined ? 0 : val)
@@ -10,8 +9,8 @@ function ListNode(val, next) {
  * @param {number} val
  * @return {ListNode}
  */
-var removeElements = function (head, val) {
-  const dumpHead = new ListNode('', head)  // 虚拟头结点
+function removeElements(head, val) {
+  const dumpHead = new ListNode('', head) // 虚拟头结点
   let pre = dumpHead
   let cur = dumpHead.next // 初始化直接为 头结点
 
@@ -22,7 +21,8 @@ var removeElements = function (head, val) {
       // 要删除节点时，pre 节点无需进行更新
       // 注意：这个时候的 cur 是没指向 cur.next 的
       pre.next = cur.next
-    } else {
+    }
+    else {
       // 如果没有遇到需要删除的节点，则更新 pre 节点为 cur 节点
       pre = cur
     }
@@ -30,4 +30,4 @@ var removeElements = function (head, val) {
     cur = cur.next
   }
   return dumpHead.next
-};
+}

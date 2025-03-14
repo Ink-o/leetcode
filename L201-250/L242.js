@@ -3,18 +3,18 @@
  * @param {string} t
  * @return {boolean}
  */
-var isAnagram = function(s, t) {
-  let map = new Map()
+function isAnagram(s, t) {
+  const map = new Map()
 
   // 先记录 s 上的各个字符出现的次数
   for (let i = 0; i < s.length; i++) {
-    const element = s[i];
+    const element = s[i]
     map.set(element, (map.get(element) || 0) + 1)
   }
   // 记录 t 上各个字符串出现的次数
   // 与 s 上的 字符相减
   for (let i = 0; i < t.length; i++) {
-    const element = t[i];
+    const element = t[i]
     if (!map.get(element)) {
       return false
     }
@@ -27,5 +27,5 @@ var isAnagram = function(s, t) {
     }
   }
   return true
-};
-console.log(isAnagram('ab', 'a'));
+}
+console.log(isAnagram('ab', 'a'))

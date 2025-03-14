@@ -2,9 +2,9 @@
  * @param {string} s
  * @return {string}
  */
-var replaceSpace = function (s) {
-  let arr = s.split('')
-  let len = s.length
+function replaceSpace(s) {
+  const arr = s.split('')
+  const len = s.length
   let count = 0
   // 计算当前字符串的空格数量
   for (let i = 0; i < s.length; i++) {
@@ -22,7 +22,8 @@ var replaceSpace = function (s) {
     // 遇到非空格，则直接左指针的数值赋值给右指针
     if (arr[left] !== ' ') {
       arr[right] = arr[left]
-    } else {
+    }
+    else {
       // 遇到空格，右指针的数值设置为 20%
       arr[right] = '0'
       arr[--right] = '2'
@@ -32,5 +33,5 @@ var replaceSpace = function (s) {
     right--
   }
   return arr.join('')
-};
-console.log(replaceSpace('We are happy.'));
+}
+console.log(replaceSpace('We are happy.'))

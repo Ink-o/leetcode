@@ -13,47 +13,47 @@
  */
 var isSymmetric = function (root) {
   if (!root) {
-    return true;
+    return true
   }
-  let queue = [];
+  const queue = []
   // 一次性进入左右孩子
-  queue.push(root.left);
-  queue.push(root.right);
+  queue.push(root.left)
+  queue.push(root.right)
 
   while (queue.length) {
-    let leftNode = queue.shift(); // 左孩子出队
-    let rightNode = queue.shift(); // 右孩子出队
+    const leftNode = queue.shift() // 左孩子出队
+    const rightNode = queue.shift() // 右孩子出队
     if (!leftNode && !rightNode) {
-      continue;
+      continue
     }
     // 左右节点有一个为null，或者两者的值不相等时，直接返回false
     if (!leftNode || !rightNode || leftNode.val !== rightNode.val) {
-      return false;
+      return false
     }
 
     // 左节点的左孩子和右孩子的右孩子入队（对称对比）
-    queue.push(leftNode.left);
-    queue.push(rightNode.right);
+    queue.push(leftNode.left)
+    queue.push(rightNode.right)
 
     // 左节点的右孩子和右孩子的左孩子入队（对称对比）
-    queue.push(leftNode.right);
-    queue.push(rightNode.left);
+    queue.push(leftNode.right)
+    queue.push(rightNode.left)
   }
-  return true;
-};
-
+  return true
+}
 
 /**
  * @param {TreeNode} root
  * @return {boolean}
  * 递归方法判断是否是对称二叉树
  */
-var isSymmetric2 = function (root) {
+function isSymmetric2(root) {
   // 三部曲
   // 1、确认传参。left：左节点。right：右节点
   const compareNode = (left, right) => {
     // 2、确认终止条件，空的条件
-    if (!left && !right) return true
+    if (!left && !right)
+      return true
     if (!left || !right || left.val !== right.val) {
       return false
     }
@@ -62,18 +62,18 @@ var isSymmetric2 = function (root) {
     // 注意，这里不支持判断 left.val === right.val。因为不是一个简单的表层判断
     // 3、确认单层递归逻辑
     // 外层判断是否相等
-    let outSide = compareNode(left.left, right.right);
+    const outSide = compareNode(left.left, right.right)
     // 里层判断是否相等
-    let inSide = compareNode(left.right, right.left);
+    const inSide = compareNode(left.right, right.left)
     // 最终返回2个与
-    return outSide && inSide;
+    return outSide && inSide
   }
   if (!root) {
-    return true;
+    return true
   }
   // 对比左右节点
-  return compareNode(root.left, root.right);
-};
+  return compareNode(root.left, root.right)
+}
 
 /**
  * Definition for a binary tree node.
@@ -90,10 +90,11 @@ var isSymmetric2 = function (root) {
  * @return {boolean}
  */
 var isSymmetric = function (root) {
-  if (!root) return true
+  if (!root)
+    return true
   const queue = [root]
   while (queue.length) {
-    let len = queue.length
+    const len = queue.length
     const cur = []
     for (let i = 0; i < len; i++) {
       const el = queue.shift()
@@ -125,4 +126,4 @@ var isSymmetric = function (root) {
     }
     return true
   }
-};
+}

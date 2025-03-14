@@ -7,7 +7,7 @@ var minPathSum = function (grid) {
   const m = grid.length
   const n = grid[0].length
   // dp[i][j] 表示在第 i 行，第 j 列的最小和
-  let dp = Array(m).fill(0).map(() => Array(n).fill(0))
+  const dp = Array.from({ length: m }).fill(0).map(() => Array.from({ length: n }).fill(0))
 
   // 初始化第一列的值
   for (let i = 0; i < n; i++) {
@@ -41,7 +41,7 @@ var minPathSum = function (grid) {
   }
 
   return dp[m - 1][n - 1]
-};
+}
 
 /**
  * 一维数组解法
@@ -50,7 +50,7 @@ var minPathSum = function (grid) {
  */
 var minPathSum = function (grid) {
   // dp[i] 表示在第 i 列，它的最小值是多少
-  let dp = Array(n)
+  const dp = Array.from({ length: n })
 
   // 初始化第一行的值
   for (let i = 0; i < n; i++) {
@@ -74,4 +74,4 @@ var minPathSum = function (grid) {
       dp[j] = Math.min(dp[j - 1], dp[j]) + grid[i][j]
     }
   }
-};
+}

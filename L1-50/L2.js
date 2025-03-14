@@ -10,9 +10,9 @@
  * @param {ListNode} l2
  * @return {ListNode}
  */
-var addTwoNumbers = function (l1, l2) {
+function addTwoNumbers(l1, l2) {
   // 保存新的链表头
-  let dumpHead = new ListNode()
+  const dumpHead = new ListNode()
   let node = dumpHead
   // 保存进位
   let num = 0
@@ -28,8 +28,10 @@ var addTwoNumbers = function (l1, l2) {
     num = sum >= 10 ? 1 : 0
 
     // 链表继续移动
-    if (l1) l1 = l1.next
-    if (l2) l2 = l2.next
+    if (l1)
+      l1 = l1.next
+    if (l2)
+      l2 = l2.next
 
     // 当 2 条链表还存在的时候才需要添加 next
     if (l1 || l2) {
@@ -42,4 +44,4 @@ var addTwoNumbers = function (l1, l2) {
     node.next = new ListNode(num)
   }
   return dumpHead
-};
+}

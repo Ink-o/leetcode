@@ -4,7 +4,7 @@
  * @param {number} target
  * @return {number[]}
  */
-var searchRange = function (nums, target) {
+function searchRange(nums, target) {
   // 这个二分一定会找到第目标元素第一次出现的下标位置
   function lowerBound(target) {
     let left = 0
@@ -13,7 +13,8 @@ var searchRange = function (nums, target) {
       const mid = Math.floor((left + right) / 2)
       if (nums[mid] < target) {
         left = mid + 1
-      } else {
+      }
+      else {
         // 当 mid 值大于等于 target 的时候。right 指针一样会缩小，直到找到第一个出现的目标值
         right = mid
       }
@@ -29,7 +30,7 @@ var searchRange = function (nums, target) {
   // 如果 start 存在的话，end 一定存在。这时候只需要找比 target 第一个大的数，然后再减去 1，就是寻找目标元素的右边界了
   const end = lowerBound(target + 1) - 1
   return [start, end]
-};
+}
 
 /**
  * 这个方法时间复杂度是On的，不推荐

@@ -12,10 +12,11 @@
  * @param {number} k
  * @return {number}
  */
-var kthSmallest = function (root, k) {
+function kthSmallest(root, k) {
   let res
   function process(root) {
-    if (!root || !k) return
+    if (!root || !k)
+      return
     process(root.left)
     // 当 k 消耗完毕后对 root 进行记录
     if (!--k) {
@@ -25,4 +26,4 @@ var kthSmallest = function (root, k) {
   }
   process(root)
   return res
-};
+}

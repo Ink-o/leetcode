@@ -3,8 +3,9 @@
  * @param {string} needle 模板串
  * @return {number}
  */
-var strStr = function (haystack, needle) {
-  if (needle.length === 0) return 0
+function strStr(haystack, needle) {
+  if (needle.length === 0)
+    return 0
   // 获取前缀表
   // 前缀表是用来回退的，它记录了模式串与主串(文本串)不匹配的时候，模式串应该从哪里开始重新匹配
   // 记录下标i之前（包括i）的字符串中，有多大长度的相同前缀后缀。
@@ -12,7 +13,7 @@ var strStr = function (haystack, needle) {
   // 前缀表构建过程看代码随想录
   const getNext = (needle) => {
     let j = -1
-    let next = [j]
+    const next = [j]
     // i 从 1 开始
     for (let i = 1; i < needle.length; i++) {
       // 前后缀（i是后缀，j是前缀）不相同了，向前回退，j 是一直被赋值为 next[j] 的，因为最终还是要回退到 -1
@@ -47,5 +48,5 @@ var strStr = function (haystack, needle) {
       return i - needle.length + 1
     }
   }
-  return - 1
-};
+  return -1
+}

@@ -3,14 +3,15 @@
  * @param {number} target
  * @return {number[][]}
  */
-var combinationSum = function (candidates, target) {
+function combinationSum(candidates, target) {
   const cur = []
   const res = []
   // startIndex：循环起点
   // pre：上次计算出来的结果
   function process(startIndex, pre) {
     // 计算结果大于 target 则终止循环
-    if (pre > target) return
+    if (pre > target)
+      return
     if (pre === target) {
       res.push([...cur])
       return
@@ -30,4 +31,4 @@ var combinationSum = function (candidates, target) {
   }
   process(0, 0)
   return res
-};
+}

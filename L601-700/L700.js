@@ -12,18 +12,19 @@
  * @param {number} val
  * @return {TreeNode}
  */
-var searchBST = function (root, val) {
+function searchBST(root, val) {
   if (!root) {
-    return null;
+    return null
   }
   // 获取当前节点的值
-  let curVal = root.val;
+  const curVal = root.val
   // 如果当前值大于对比值，则去搜索他的左边界值
   if (curVal > val) {
-    return searchBST(root.left, val);
-  } else if (curVal < val) {
-    // 如果当前值大于对比值，则去搜索他的右边界值
-    return searchBST(root.right, val);
+    return searchBST(root.left, val)
   }
-  return root;
-};
+  else if (curVal < val) {
+    // 如果当前值大于对比值，则去搜索他的右边界值
+    return searchBST(root.right, val)
+  }
+  return root
+}

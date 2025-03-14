@@ -2,7 +2,7 @@
  * @param {number[]} nums
  * @return {number[][]}
  */
-var findSubsequences = function (nums) {
+function findSubsequences(nums) {
   const cur = []
   const res = []
   function process(startIndex, pre) {
@@ -31,5 +31,5 @@ var findSubsequences = function (nums) {
   // pre 初始化为负无穷
   process(0, -Infinity)
   return res
-};
-console.log(findSubsequences([4, 6, 7, 7]));
+}
+console.log(findSubsequences([4, 6, 7, 7]))

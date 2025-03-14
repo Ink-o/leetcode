@@ -11,26 +11,26 @@
  * @param {TreeNode} root
  * @return {TreeNode}
  */
-var convertBST = function (root) {
-  let pre = null;
-  return inOrderReverse(root);
+function convertBST(root) {
+  let pre = null
+  return inOrderReverse(root)
   function inOrderReverse(root) {
     if (!root) {
-      return null;
+      return null
     }
     // 先遍历右节点
-    inOrderReverse(root.right);
+    inOrderReverse(root.right)
 
     // 对当前的节点值进行累加
     if (pre) {
-      root.val = pre.val + root.val;
+      root.val = pre.val + root.val
     }
     // 更新pre指针
-    pre = root;
+    pre = root
 
     // 后遍历左节点
-    inOrderReverse(root.left);
+    inOrderReverse(root.left)
 
-    return root;
+    return root
   }
-};
+}

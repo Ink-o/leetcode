@@ -5,7 +5,7 @@
  * @param {number} k
  * @return {void} Do not return anything, modify nums in-place instead.
  */
-var rotate = function (nums, k) {
+function rotate(nums, k) {
   const reverse = (start, end) => {
     while (start < end) {
       [nums[start++], nums[end--]] = [nums[end], nums[start]]
@@ -23,4 +23,4 @@ var rotate = function (nums, k) {
 
   // 原始部分也进行反转
   reverse(k, nums.length - 1)
-};
+}

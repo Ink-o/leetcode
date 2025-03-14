@@ -3,11 +3,13 @@
  * @param {number[][]} matrix
  * @return {void} Do not return anything, modify matrix in-place instead.
  */
-var setZeroes = function (matrix) {
+function setZeroes(matrix) {
   // m：总长度
   // n：每行长度
-  const m = matrix.length, n = matrix[0].length
-  let flagCol0 = false, flagRow0 = false
+  const m = matrix.length
+  const n = matrix[0].length
+  let flagCol0 = false
+  let flagRow0 = false
 
   // 这里要对第 0 行和 第 0 列单独做标记是为了防止混淆。下面有解释
   // 为了防止第一行/第一列的 0 对原本的 0 产生的混淆结果
@@ -59,10 +61,11 @@ var setZeroes = function (matrix) {
       matrix[0][j] = 0
     }
   }
-};
+}
 
-/**
- * 实际上，我们需要单独为第一行和第一列做标记，原因如下：
+/*
+
+实际上，我们需要单独为第一行和第一列做标记，原因如下：
 
 如果我们不这样做，而是立即开始标记，那么第一行和第一列的原始数据就会被覆盖，我们就无法知道它们原来是否包含0。这就是为什么我们需要先遍历第一行和第一列，然后用两个标志变量（flagRow0和flagCol0）来记录它们是否包含0。
 
@@ -74,7 +77,6 @@ var setZeroes = function (matrix) {
 1 1 1 1
 1 1 1 1
 ```
-
 在这个矩阵中，第一行的第一个元素是0。如果我们没有先遍历第一行和第一列，而是立即开始标记，那么当我们遍历到第一行的第一个元素时，我们会将第一行和第一列的所有元素都设为0，得到以下矩阵：
 
 ```

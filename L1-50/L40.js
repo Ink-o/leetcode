@@ -4,7 +4,7 @@
  * @param {number} target
  * @return {number[][]}
  */
-var combinationSum2 = function (candidates, target) {
+function combinationSum2(candidates, target) {
   const cur = []
   const res = []
   // 要在同一数层上进行去重，原数组得先进行排序
@@ -38,4 +38,4 @@ var combinationSum2 = function (candidates, target) {
   }
   process(0, 0)
   return res
-};
+}

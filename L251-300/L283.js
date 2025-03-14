@@ -3,7 +3,7 @@
  * @param {number[]} nums
  * @return {void} Do not return anything, modify nums in-place instead.
  */
-var moveZeroes = function (nums) {
+function moveZeroes(nums) {
   // 基准元素索引
   let slow = 0
   for (let i = 0; i < nums.length; i++) {
@@ -15,4 +15,4 @@ var moveZeroes = function (nums) {
       slow++
     }
   }
-};
+}

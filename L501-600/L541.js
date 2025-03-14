@@ -3,7 +3,7 @@
  * @param {number} k
  * @return {string}
  */
-var reverseStr = function (s, k) {
+function reverseStr(s, k) {
   const arr = s.split('')
   // 每次前进 2k 步
   for (let i = 0; i < arr.length; i += 2 * k) {
@@ -26,5 +26,5 @@ var reverseStr = function (s, k) {
     }
   }
   return arr.join('')
-};
-console.log(reverseStr('abcdefg', 2));
+}
+console.log(reverseStr('abcdefg', 2))
