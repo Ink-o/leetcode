@@ -5,6 +5,14 @@ export NVM_DIR="$HOME/.nvm"
 
 nvm use 20.12.2
 
+CURRENT_NODE_VERSION=$(nvm current | tr -d '\n')  # 动态获取版本并去换行符
+
+export NODE_BIN_PATH="$HOME/.nvm/versions/node/$CURRENT_NODE_VERSION/bin"
+
+export PATH=$PATH:$NODE_BIN_PATH
+
 pnpm -v
+
+pnpm lint
 
 echo 'lint end'
