@@ -10,10 +10,13 @@ importers:
     devDependencies:
       '@antfu/eslint-config':
         specifier: ^4.10.1
-        version: 4.10.1(@typescript-eslint/utils@8.26.1)(@vue/compiler-sfc@3.5.13)(eslint@9.22.0)(typescript@5.8.2)
+        version: 4.10.1(@typescript-eslint/utils@8.26.1(eslint@9.22.0)(typescript@5.8.2))(@vue/compiler-sfc@3.5.13)(eslint@9.22.0)(typescript@5.8.2)
       eslint:
         specifier: ^9.22.0
         version: 9.22.0
+      husky:
+        specifier: ^9.1.7
+        version: 9.1.7
 
 packages:
 
@@ -770,6 +773,11 @@ packages:
     resolution: {integrity: sha512-puUZAUKT5m8Zzvs72XWy3HtvVbTWljRE66cP60bxJzAqf2DgICo7lYTY2IHUmLnNpjYvw5bvmoHvPc0QO2a62w==, tarball: https://registry.npmmirror.com/hosted-git-info/-/hosted-git-info-7.0.2.tgz}
     engines: {node: ^16.14.0 || >=18.0.0}
 
+  husky@9.1.7:
+    resolution: {integrity: sha512-5gs5ytaNjBrh5Ow3zrvdUUY+0VxIuWVL4i9irt6friV+BqdCfmV11CQTWMiBYWHbXhco+J1kHfTOUkePhCDvMA==, tarball: https://registry.npmmirror.com/husky/-/husky-9.1.7.tgz}
+    engines: {node: '>=18'}
+    hasBin: true
+
   ignore@5.3.2:
     resolution: {integrity: sha512-hsBTNUqQTDwkWtcdYI2i06Y/nUBEsNEDJKjWdigLvegy8kDuJAS8uRlpkkcQpyEXL0Z/pjDy5HBmMjRCJ2gq+g==, tarball: https://registry.npmmirror.com/ignore/-/ignore-5.3.2.tgz}
     engines: {node: '>= 4'}
@@ -1359,16 +1367,16 @@ packages:
 
 snapshots:
 
-  '@antfu/eslint-config@4.10.1(@typescript-eslint/utils@8.26.1)(@vue/compiler-sfc@3.5.13)(eslint@9.22.0)(typescript@5.8.2)':
+  '@antfu/eslint-config@4.10.1(@typescript-eslint/utils@8.26.1(eslint@9.22.0)(typescript@5.8.2))(@vue/compiler-sfc@3.5.13)(eslint@9.22.0)(typescript@5.8.2)':
     dependencies:
       '@antfu/install-pkg': 1.0.0
       '@clack/prompts': 0.10.0
       '@eslint-community/eslint-plugin-eslint-comments': 4.4.1(eslint@9.22.0)
       '@eslint/markdown': 6.3.0
       '@stylistic/eslint-plugin': 4.2.0(eslint@9.22.0)(typescript@5.8.2)
-      '@typescript-eslint/eslint-plugin': 8.26.1(@typescript-eslint/parser@8.26.1)(eslint@9.22.0)(typescript@5.8.2)
+      '@typescript-eslint/eslint-plugin': 8.26.1(@typescript-eslint/parser@8.26.1(eslint@9.22.0)(typescript@5.8.2))(eslint@9.22.0)(typescript@5.8.2)
       '@typescript-eslint/parser': 8.26.1(eslint@9.22.0)(typescript@5.8.2)
-      '@vitest/eslint-plugin': 1.1.37(@typescript-eslint/utils@8.26.1)(eslint@9.22.0)(typescript@5.8.2)
+      '@vitest/eslint-plugin': 1.1.37(@typescript-eslint/utils@8.26.1(eslint@9.22.0)(typescript@5.8.2))(eslint@9.22.0)(typescript@5.8.2)
       ansis: 3.17.0
       cac: 6.7.14
       eslint: 9.22.0
@@ -1387,8 +1395,8 @@ snapshots:
       eslint-plugin-regexp: 2.7.0(eslint@9.22.0)
       eslint-plugin-toml: 0.12.0(eslint@9.22.0)
       eslint-plugin-unicorn: 57.0.0(eslint@9.22.0)
-      eslint-plugin-unused-imports: 4.1.4(@typescript-eslint/eslint-plugin@8.26.1)(eslint@9.22.0)
-      eslint-plugin-vue: 10.0.0(eslint@9.22.0)(vue-eslint-parser@10.1.1)
+      eslint-plugin-unused-imports: 4.1.4(@typescript-eslint/eslint-plugin@8.26.1(@typescript-eslint/parser@8.26.1(eslint@9.22.0)(typescript@5.8.2))(eslint@9.22.0)(typescript@5.8.2))(eslint@9.22.0)
+      eslint-plugin-vue: 10.0.0(eslint@9.22.0)(vue-eslint-parser@10.1.1(eslint@9.22.0))
       eslint-plugin-yml: 1.17.0(eslint@9.22.0)
       eslint-processor-vue-blocks: 2.0.0(@vue/compiler-sfc@3.5.13)(eslint@9.22.0)
       globals: 16.0.0
@@ -1470,7 +1478,7 @@ snapshots:
   '@eslint-community/regexpp@4.12.1': {}
 
   '@eslint/compat@1.2.7(eslint@9.22.0)':
-    dependencies:
+    optionalDependencies:
       eslint: 9.22.0
 
   '@eslint/config-array@0.19.2':
@@ -1590,7 +1598,7 @@ snapshots:
 
   '@types/unist@3.0.3': {}
 
-  '@typescript-eslint/eslint-plugin@8.26.1(@typescript-eslint/parser@8.26.1)(eslint@9.22.0)(typescript@5.8.2)':
+  '@typescript-eslint/eslint-plugin@8.26.1(@typescript-eslint/parser@8.26.1(eslint@9.22.0)(typescript@5.8.2))(eslint@9.22.0)(typescript@5.8.2)':
     dependencies:
       '@eslint-community/regexpp': 4.12.1
       '@typescript-eslint/parser': 8.26.1(eslint@9.22.0)(typescript@5.8.2)
@@ -1667,10 +1675,11 @@ snapshots:
       '@typescript-eslint/types': 8.26.1
       eslint-visitor-keys: 4.2.0
 
-  '@vitest/eslint-plugin@1.1.37(@typescript-eslint/utils@8.26.1)(eslint@9.22.0)(typescript@5.8.2)':
+  '@vitest/eslint-plugin@1.1.37(@typescript-eslint/utils@8.26.1(eslint@9.22.0)(typescript@5.8.2))(eslint@9.22.0)(typescript@5.8.2)':
     dependencies:
       '@typescript-eslint/utils': 8.26.1(eslint@9.22.0)(typescript@5.8.2)
       eslint: 9.22.0
+    optionalDependencies:
       typescript: 5.8.2
 
   '@vue/compiler-core@3.5.13':
@@ -2023,12 +2032,13 @@ snapshots:
       semver: 7.7.1
       strip-indent: 4.0.0
 
-  eslint-plugin-unused-imports@4.1.4(@typescript-eslint/eslint-plugin@8.26.1)(eslint@9.22.0):
+  eslint-plugin-unused-imports@4.1.4(@typescript-eslint/eslint-plugin@8.26.1(@typescript-eslint/parser@8.26.1(eslint@9.22.0)(typescript@5.8.2))(eslint@9.22.0)(typescript@5.8.2))(eslint@9.22.0):
     dependencies:
-      '@typescript-eslint/eslint-plugin': 8.26.1(@typescript-eslint/parser@8.26.1)(eslint@9.22.0)(typescript@5.8.2)
       eslint: 9.22.0
+    optionalDependencies:
+      '@typescript-eslint/eslint-plugin': 8.26.1(@typescript-eslint/parser@8.26.1(eslint@9.22.0)(typescript@5.8.2))(eslint@9.22.0)(typescript@5.8.2)
 
-  eslint-plugin-vue@10.0.0(eslint@9.22.0)(vue-eslint-parser@10.1.1):
+  eslint-plugin-vue@10.0.0(eslint@9.22.0)(vue-eslint-parser@10.1.1(eslint@9.22.0)):
     dependencies:
       '@eslint-community/eslint-utils': 4.5.1(eslint@9.22.0)
       eslint: 9.22.0
@@ -2151,7 +2161,7 @@ snapshots:
       reusify: 1.1.0
 
   fdir@6.4.3(picomatch@4.0.2):
-    dependencies:
+    optionalDependencies:
       picomatch: 4.0.2
 
   file-entry-cache@8.0.0:
@@ -2209,6 +2219,8 @@ snapshots:
   hosted-git-info@7.0.2:
     dependencies:
       lru-cache: 10.4.3
+
+  husky@9.1.7: {}
 
   ignore@5.3.2: {}
 

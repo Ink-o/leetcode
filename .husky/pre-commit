@@ -1,0 +1,5 @@
+echo 'lint starting'
+
+pnpm lint
+
+echo 'lint end'
