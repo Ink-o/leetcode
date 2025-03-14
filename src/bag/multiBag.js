@@ -1,3 +1,5 @@
+// 多重背包问题
+
 function testMultiPack1() {
   // 版本一：改变物品数量为01背包格式
   const weight = [1, 3, 4]

@@ -21,4 +21,6 @@ function sortedSquares(nums) {
     }
     pos--
   }
+
+  return ret
 }
